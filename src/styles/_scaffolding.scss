@@ -1,0 +1,86 @@
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+
+  font-family: $font-family;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  color: $font-color;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: $monospace;
+}
+
+div,
+span,
+p {
+  cursor: default;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: lighten($primary, 10%);
+  }
+}
+
+p {
+  line-height: 1.4;
+}
+
+input {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+  background-color: $light-gray;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button,
+input {
+  outline: none;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+}
+
+::selection {
+  background: $primary;
+  color: white;
+}
+
+.codex-editor {
+  .codex-editor__redactor {
+    padding-bottom: 50px !important;
+  }
+}

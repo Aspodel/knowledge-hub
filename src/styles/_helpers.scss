@@ -1,0 +1,89 @@
+.hidden {
+  display: none !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-dimension {
+  height: 100%;
+  width: 100%;
+}
+
+.screen-size {
+  width: $screen-width;
+  height: $screen-height;
+}
+
+.tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  padding: 4px 10px;
+  border-radius: 5px;
+
+  background-color: #b5e4ca;
+}
+
+.tick-symbol {
+  position: relative;
+
+  height: 24px;
+  width: 24px;
+
+  cursor: pointer;
+
+  &:hover {
+    &::after {
+      border-color: $font-color;
+    }
+  }
+
+  &::after {
+    content: "";
+
+    display: block;
+    width: 7px;
+    height: 14px;
+    border: solid $light-font-color;
+    border-width: 0 2.4px 2.4px 0;
+
+    position: absolute;
+    top: 15%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    transform: rotate(45deg);
+  }
+}

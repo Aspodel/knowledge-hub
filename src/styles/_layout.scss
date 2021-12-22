@@ -1,0 +1,52 @@
+.app {
+  background: none;
+
+  .page {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: none;
+
+    .page__main {
+      flex: 1;
+      background: none;
+
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .header-bar {
+        flex-shrink: 0;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        overflow: auto;
+      }
+
+      .layout-container {
+        flex-grow: 1;
+
+        display: flex;
+        flex-direction: column;
+        // height: 100%;
+
+        background-color: $light-gray;
+        padding: 20px 30px 20px 20px;
+
+        .layout-container__header {
+          flex-shrink: 0;
+
+          font-weight: 700;
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+        }
+
+        .layout-container__main {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}

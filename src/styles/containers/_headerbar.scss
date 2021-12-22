@@ -1,0 +1,34 @@
+.header-bar {
+  padding: 15px 40px;
+
+  .header-bar__left {
+    input {
+      padding: 10px 20px;
+      border-radius: 8px;
+      background-color: $light-gray;
+
+      border: none;
+      outline: none;
+    }
+  }
+
+  .header-bar__right {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $font-color;
+      &:not(:first-child) {
+        svg,
+        div {
+          margin-left: 34px;
+        }
+      }
+    }
+
+    svg {
+      height: 28px;
+      width: 28px;
+    }
+  }
+}

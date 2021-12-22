@@ -1,0 +1,243 @@
+.avatar {
+  background: none;
+
+  img {
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    border-radius: 50%;
+    vertical-align: middle;
+    object-position: center;
+    object-fit: cover;
+    border: 2px solid gray;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 6px;
+
+  &.-primary {
+    background: $primary;
+    color: $white-color;
+  }
+  &.-secondary {
+    background: $primary;
+    color: $primary;
+  }
+  &.-text {
+    background-color: transparent;
+    color: $primary;
+  }
+  a {
+    color: $white-color;
+  }
+}
+
+.header-box {
+  display: flex;
+  align-items: center;
+
+  width: fit-content;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+
+  .header-box__bullet {
+    // background-color: #b5e4ca;
+
+    height: 38px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  .header-box__content {
+    flex: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.4);
+
+  .modal {
+    height: fit-content;
+    min-width: 300px;
+    padding: 30px 20px;
+    margin-top: 200px;
+    border-radius: 8px;
+    // margin-top: 30px;
+
+    background-color: $white-color;
+
+    box-shadow: 0px 10px 20px rgba($color: $light-font-color, $alpha: 0.2);
+
+    .modal__header {
+      padding-bottom: 25px;
+      box-shadow: 0 1.5px 0 $heavy-gray;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: 800;
+        line-height: 0.2rem;
+
+        height: 30px;
+        width: 30px;
+        padding: 5px;
+        border-radius: 50%;
+
+        overflow: hidden;
+
+        color: $light-font-color;
+        background-color: $light-gray;
+
+        &:hover {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .modal__footer {
+      padding-top: 25px;
+      box-shadow: 0 -1.5px 0 $heavy-gray;
+
+      button {
+        margin-left: auto;
+        // padding: 7px 14px;
+
+        // font-weight: 600;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    display: none;
+
+    &:checked ~ .checkbox__checkmark {
+      &.-tick {
+        background-color: $primary;
+        border: transparent;
+      }
+
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  .checkbox__checkmark {
+    position: relative;
+
+    height: 24px;
+    width: 24px;
+    border-radius: 7px;
+    border: 2px solid rgba($color: $light-font-color, $alpha: 0.3);
+
+    background-color: transparent;
+
+    &::after {
+      content: "";
+
+      display: none;
+
+      position: absolute;
+    }
+
+    &.-tick {
+      &::after {
+        top: 15%;
+        left: 37%;
+        transform: translate(-50%, -50%);
+        transform: rotate(45deg);
+
+        width: 7px;
+        height: 14px;
+        border: solid $white-color;
+        border-width: 0 2.4px 2.4px 0;
+      }
+    }
+
+    &.-square {
+      &::after {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 70%;
+        height: 70%;
+        border-radius: 3px;
+
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+.banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  min-height: 80px;
+  padding: 15px 40px;
+  box-shadow: 0 -2px 0 $heavy-gray;
+
+  background-color: $white-color;
+}
+
+.toggle-view {
+  .button {
+    height: fit-content;
+    width: fit-content;
+    padding: 8px;
+    margin-left: 12px;
+    border-radius: 8px;
+
+    background-color: $white-color;
+    color: $light-font-color;
+
+    overflow: hidden;
+    box-sizing: content-box;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.-active {
+      background-color: $white-color;
+      color: $font-color;
+      box-shadow: 0px 5px 8px rgba($color: $font-color, $alpha: 0.2);
+    }
+  }
+}
