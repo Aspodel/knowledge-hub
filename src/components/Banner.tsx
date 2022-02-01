@@ -2,14 +2,12 @@ import React from "react";
 import Button, { IButton } from "./Button";
 
 type BannerProps = {
-  active?: boolean;
   className?: string;
   children?: React.ReactNode;
   buttons?: IButton[];
 };
 
 const Banner = ({
-  active = false,
   className = "",
   children,
   buttons,
@@ -17,7 +15,7 @@ const Banner = ({
   return (
     <div
       className={`banner ${className} ${
-        active ? "" : "hidden"
+        children ? "" : "hidden"
       } flex-between align-center`}
     >
       <div className="banner-left">{children}</div>

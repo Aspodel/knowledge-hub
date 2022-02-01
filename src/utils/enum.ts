@@ -19,6 +19,5 @@ export enum BulletColor {
   Blue = "#b1e5fc",
   Green = "#b5e4ca",
   Orange = "#ffbc9a",
-
   Purple = "#cbbeff",
 }

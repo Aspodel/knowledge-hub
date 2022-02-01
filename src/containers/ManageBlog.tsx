@@ -23,6 +23,7 @@ function ManageBlog() {
     setPreviewModal(true);
   };
 
+  //Add id of checkbox to checked list
   const handleCheckoxChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -38,26 +39,6 @@ function ManageBlog() {
     }
   };
 
-  // Remove this function
-  // const checkActiveClass = (id: number) => {
-  //   if (checkedList) {
-  //     if (checkedList.find((element) => element === id)) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // };
-
-  // Check if all item in list checked, then set Check ALl true
-  // useEffect(() => {
-  //   // check BlogList include all item in CheckedList
-  //   let isCheckAll = [1, 2].every(
-  //     (element) => checkedList.indexOf(element) > -1
-  //   );
-  //   // console.log(isCheckAll);
-  //   setCheckAll(isCheckAll);
-  // }, [checkedList]);
-
   const handleCheckAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setCheckedList(e.target.checked ? plainOptions : []);
     const checked = e.target.checked;
@@ -70,13 +51,7 @@ function ManageBlog() {
       //clear item in Checked list
       setCheckedList([]);
     }
-    // setCheckAll(e.target.checked);
   };
-
-  // let array = JSON.stringify(A);
-  // console.log(array);
-  // console.log(typeof A);
-  // console.log(typeof array);
 
   // useEffect(() => {
   //   console.log("testing");
@@ -87,38 +62,46 @@ function ManageBlog() {
   // }, [value]);
 
   return (
-    <div className="manage-blog full-dimension">
-      <div className="manage-blog__line flex-between align-center">
-        <div className="flex">
-          <HeaderBox>Queue</HeaderBox>
-          <input type="search" name="Search" id="" placeholder="Search blog" />
+    <div className="page-layout">
+      <div className="page-layout__header">Blogs</div>
+      <div className="page-layout__main manage-blog">
+        <div className="manage-blog__line flex-between align-center">
+          <div className="flex">
+            <HeaderBox>Queue</HeaderBox>
+            <input
+              type="search"
+              name="Search"
+              id=""
+              placeholder="Search blog"
+            />
+          </div>
+          <ToggleView isGridView={isGridView} setGridView={setGridView} />
         </div>
-        <ToggleView isGridView={isGridView} setGridView={setGridView} />
+
+        <ViewMode
+          isGridMode={isGridView}
+          showPreviewMode={showPreviewMode}
+          handleCheckboxChange={handleCheckoxChange}
+          handleCheckAllChange={handleCheckAllChange}
+          checkedList={checkedList}
+        />
+
+        {/* <TestNha hehe={"1"} yeah={"1"} /> */}
+
+        {/* <Editor id="custom" value={value} setValue={setValue} /> */}
       </div>
-
-      <ViewMode
-        isGridMode={isGridView}
-        showPreviewMode={showPreviewMode}
-        handleCheckboxChange={handleCheckoxChange}
-        handleCheckAllChange={handleCheckAllChange}
-        checkedList={checkedList}
-      />
-
-      {/* <TestNha hehe={"1"} yeah={"1"} /> */}
-
-      {/* <Editor id="custom" value={value} setValue={setValue} /> */}
-
       <PreviewBlogModal
         isShow={PreviewModal}
         setShow={setPreviewModal}
         children={previewBlog}
       />
 
-      <Banner
-        buttons={[{ children: "Publish" }]}
-        active={checkedList.length ? true : false}
-      >
-        {checkedList.length ? `${checkedList.length} item selected` : null}
+      <Banner buttons={[{ children: "Publish" }]}>
+        {checkedList.length
+          ? `${checkedList.length} ${
+              checkedList.length > 1 ? "items" : "item"
+            } selected`
+          : null}
       </Banner>
     </div>
   );

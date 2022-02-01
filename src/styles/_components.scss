@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 8px;
   padding: 8px 20px;
 
   font-size: 0.9rem;
@@ -94,10 +95,6 @@
       box-shadow: 0 1.5px 0 $heavy-gray;
 
       button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
         font-weight: 800;
         line-height: 0.2rem;
 
@@ -204,14 +201,9 @@
 }
 
 .banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
   min-height: 80px;
   padding: 15px 40px;
-  box-shadow: 0 -2px 0 $heavy-gray;
+  // box-shadow: 0 -2px 0 $heavy-gray;
 
   background-color: $white-color;
 }
@@ -238,6 +230,52 @@
       background-color: $white-color;
       color: $font-color;
       box-shadow: 0px 5px 8px rgba($color: $font-color, $alpha: 0.2);
+    }
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
+
+  .tooltiptext {
+    width: fit-content;
+    padding: 5px;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    background-color: black;
+    color: #fff;
+
+    visibility: hidden;
+    // text-align: center;
+    white-space: nowrap;
+
+    &.-right {
+      left: 105%;
+    }
+    &.-left {
+      right: 105%;
+    }
+    &.-top {
+      bottom: 100%;
+      left: 50%;
+    }
+    &.-bottom {
+      top: 100%;
+      left: 50%;
     }
   }
 }
