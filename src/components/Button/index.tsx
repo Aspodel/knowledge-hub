@@ -1,11 +1,17 @@
 import React from "react";
+import { tuple } from "../../utils/type";
+import "./Button.scss";
 
-export interface IButton {
-  disable?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+const ButtonTypes = tuple("primary", "outlined", "text", "link");
+type ButtonType = typeof ButtonTypes[number];
+
+export interface IButtonProps {
+  type?: ButtonType;
   variant?: "primary" | "secondary" | "text";
   className?: string;
   children?: React.ReactNode;
+  disable?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button = ({
@@ -14,7 +20,7 @@ const Button = ({
   variant = "primary",
   className = "",
   children,
-}: IButton) => {
+}: IButtonProps) => {
   const _className = `button -${variant}${
     disable ? " -disable" : ""
   } ${className}`;

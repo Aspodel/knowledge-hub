@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Banner from "../components/Banner";
+import Banner from "../components/Panel";
 // import Editor from "../components/Editor";
-import HeaderBox from "../components/HeaderBox";
+import HeaderBox from "../components/Heading";
 import PreviewBlogModal from "../components/ManageBlog/PreviewBlogModal";
 // import TestNha from "../components/ManageBlog/TestNha";
 import ViewMode from "../components/ManageBlog/ViewMode";

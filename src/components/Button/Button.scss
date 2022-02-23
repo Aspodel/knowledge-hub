@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+  padding: 8px 20px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 6px;
+
+  &.-primary {
+    background: $primary;
+    color: $white-color;
+  }
+  &.-secondary {
+    background: $primary;
+    color: $primary;
+  }
+  &.-text {
+    background-color: transparent;
+    color: $primary;
+  }
+  a {
+    color: $white-color;
+  }
+}

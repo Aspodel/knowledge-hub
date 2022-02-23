@@ -1,6 +1,7 @@
 import React from "react";
-import Button, { IButton } from "./Button";
-import HeaderBox from "./HeaderBox";
+import "./Modal.scss";
+import Button, { IButtonProps } from "../Button";
+import HeaderBox from "../Heading";
 
 type ModalProps = {
   isShow: boolean;
@@ -8,7 +9,7 @@ type ModalProps = {
   title: string;
   className?: string;
   children?: React.ReactNode;
-  footerButtons?: IButton[];
+  footerButtons?: IButtonProps[];
 };
 
 const Modal = ({

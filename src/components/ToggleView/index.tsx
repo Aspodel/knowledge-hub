@@ -1,6 +1,7 @@
 import React from "react";
+import "./ToggleView.scss";
 import { Iconly } from "react-iconly";
-import Button from "./Button";
+import Button from "../Button";
 
 type ToggleViewProps = {
   isGridView: boolean;

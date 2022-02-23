@@ -1,17 +1,13 @@
 import React from "react";
-import Button, { IButton } from "./Button";
+import Button, { IButtonProps } from "../Button";
 
 type BannerProps = {
   className?: string;
   children?: React.ReactNode;
-  buttons?: IButton[];
+  buttons?: IButtonProps[];
 };
 
-const Banner = ({
-  className = "",
-  children,
-  buttons,
-}: BannerProps) => {
+const Banner = ({ className = "", children, buttons }: BannerProps) => {
   return (
     <div
       className={`banner ${className} ${

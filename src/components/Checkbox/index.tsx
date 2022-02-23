@@ -1,17 +1,22 @@
 import React from "react";
+import { tuple } from "../../utils/type";
+import "./Checkbox.scss";
+
+const CheckboxVariants = tuple("square", "tick");
+type CheckboxVariant = typeof CheckboxVariants[number];
 
 type CheckAllType<T> = {
   optionsValue: T[];
   checkedValue: T[];
 };
 
-type CheckboxProps<T = number> = {
+interface ICheckboxProps<T = number> {
   id: T;
-  variant?: "square" | "tick";
+  variant?: CheckboxVariant;
   onChange?: any;
   checked?: boolean;
   checkAll?: CheckAllType<T>;
-};
+}
 
 const Checkbox = <T extends {}>({
   id,
@@ -19,7 +24,7 @@ const Checkbox = <T extends {}>({
   onChange,
   checked,
   checkAll,
-}: CheckboxProps<T>) => {
+}: ICheckboxProps<T>) => {
   let _checkAll =
     checkAll &&
     checkAll.optionsValue.every(

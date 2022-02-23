@@ -1,0 +1,45 @@
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
+
+  .tooltiptext {
+    width: fit-content;
+    padding: 5px;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    background-color: black;
+    color: #fff;
+
+    visibility: hidden;
+    // text-align: center;
+    white-space: nowrap;
+
+    &.-right {
+      left: 105%;
+    }
+    &.-left {
+      right: 105%;
+    }
+    &.-top {
+      bottom: 100%;
+      left: 50%;
+    }
+    &.-bottom {
+      top: 100%;
+      left: 50%;
+    }
+  }
+}

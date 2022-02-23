@@ -1,0 +1,12 @@
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  background-color: $light-blue;
+  color: $primary;
+
+  .close-symbol {
+    font-size: 0.9rem;
+  }
+}

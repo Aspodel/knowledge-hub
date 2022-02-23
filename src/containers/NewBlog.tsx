@@ -1,7 +1,8 @@
 import React from "react";
 import { Iconly } from "react-iconly";
-import Banner from "../components/Banner";
-import HeaderBox from "../components/HeaderBox";
+import Banner from "../components/Panel";
+import HeaderBox from "../components/Heading";
+import Tag from "../components/Tag";
 import Tooltip from "../components/Tooltip";
 import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constans";
 import { BulletColor } from "../utils/enum";
@@ -134,6 +135,7 @@ const NewBlog = () => {
                 .Net
                 <span className="close-symbol" />
               </span>
+              <Tag>Web</Tag>
             </div>
           </div>
         </div>
