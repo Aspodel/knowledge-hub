@@ -84,7 +84,7 @@ function ManageBlog() {
           <ToggleView isGridView={isGridView} setGridView={setGridView} />
         </div>
 
-        {/* <Icon icon={Home} /> */}
+        {/* <Icon icon={Home} style={{ color: "green" }} /> */}
 
         <ViewMode
           isGridMode={isGridView}

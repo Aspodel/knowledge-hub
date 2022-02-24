@@ -3,23 +3,40 @@
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
-  gap: 2px;
+  padding: 6px 10px;
+  gap: 4px;
   border-radius: 5px;
 
   font-size: 0.875rem;
   font-weight: 700;
 
-  // background-color: var.$light-blue;
-  // color: var.$primary;
-  // background-color: #b5e4ca;
-
   &--default {
     background-color: var.$heavy-gray;
   }
 
-  .close-symbol {
-    // height: 18px;
-    // width: 10px;
+  &--green {
+    color: var.$green;
+    background-color: var.$light-green-2;
+  }
+
+  &--two-tone {
+    color: var.$font-color;
+
+    &.tag--green {
+      background-color: var.$light-green;
+    }
+    &.tag--blue {
+      background-color: var.$light-blue;
+    }
+    &.tag--orange {
+      background-color: var.$light-orange;
+    }
+    &.tag--red {
+      background-color: var.$light-green;
+    }
+  }
+
+  &--closable {
+    padding-right: 8px;
   }
 }

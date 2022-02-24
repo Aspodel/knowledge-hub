@@ -1,7 +1,9 @@
 import React from "react";
 import "./Modal.scss";
 import Button, { IButtonProps } from "../Button";
-import HeaderBox from "../Heading";
+import Heading from "../Heading";
+import Icon from "../Icon";
+import { X } from "@styled-icons/heroicons-outline";
 
 type ModalProps = {
   isShow: boolean;
@@ -28,9 +30,9 @@ const Modal = ({
     <div className="modal-overlay">
       <div className={`modal ${className}`}>
         <div className="modal__header flex-between align-center">
-          <HeaderBox>{title}</HeaderBox>
+          <Heading>{title}</Heading>
           <Button onClick={() => setShow(false)} variant="text">
-            x
+            <Icon icon={X } />
           </Button>
         </div>
         <div className="modal__main">{children}</div>

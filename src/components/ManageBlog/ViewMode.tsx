@@ -3,6 +3,7 @@ import { Iconly } from "react-iconly";
 import { IBlog } from "../../interfaces";
 import Button from "../Button";
 import Checkbox from "../Checkbox";
+import Tag from "../Tag";
 
 interface ViewModeProps {
   data?: IBlog[];
@@ -69,7 +70,9 @@ const ViewMode = ({
           <span>Blog title: First blog of aspodel tran</span>
         </span>
         <span className="view-mode__item__status">
-          <span className="tag">Published</span>
+          <Tag color="green" type="two-tone">
+            Published
+          </Tag>
         </span>
         <span className="view-mode__item__time">
           {isGridMode && <Iconly name="TimeCircle" size={20} />}
@@ -111,7 +114,9 @@ const ViewMode = ({
           <span>Blog title: First blog of aspodel tran</span>
         </span>
         <span className="view-mode__item__status">
-          <span className="tag">Published</span>
+          <Tag color="green" >
+            Published
+          </Tag>
         </span>
         <span className="view-mode__item__time">
           {isGridMode && <Iconly name="TimeCircle" size={20} />}

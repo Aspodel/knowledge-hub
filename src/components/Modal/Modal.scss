@@ -4,6 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
 
   display: flex;
   justify-content: center;
@@ -25,7 +26,7 @@
 
     box-shadow: 0px 10px 20px rgba($color: var.$light-font-color, $alpha: 0.2);
 
-    .modal__header {
+    &__header {
       padding-bottom: 25px;
       box-shadow: 0 1.5px 0 var.$heavy-gray;
 
@@ -43,8 +44,10 @@
         color: var.$light-font-color;
         background-color: var.$light-gray;
 
+        transition: transform 0.25s;
+
         &:hover {
-          font-size: 1.1rem;
+          transform: rotate(90deg);
         }
       }
     }

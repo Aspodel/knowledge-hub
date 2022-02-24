@@ -8,6 +8,8 @@ interface IIconProps {
   size?: number;
   color?: Color;
   className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }
 
 const Icon = ({
@@ -15,13 +17,24 @@ const Icon = ({
   size = 18,
   color = Color.Default,
   className,
+  style,
+  onClick,
 }: IIconProps) => {
+  let defaultStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    color: color,
+    // cursor: "pointer",
+  };
+  let styles = { ...defaultStyles, ...style };
+
   return (
     <span
       className={joinClassnames(["icon", className])}
-      style={{ display: "inline-flex", color: color }}
+      style={styles}
+      onClick={onClick}
     >
-      {IconCmp && <IconCmp size={size} />}
+      <IconCmp size={size} />
     </span>
   );
 };
