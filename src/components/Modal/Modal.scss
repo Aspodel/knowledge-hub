@@ -1,3 +1,5 @@
+@use "../../styles/variables" as var;
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -19,13 +21,13 @@
     border-radius: 8px;
     // margin-top: 30px;
 
-    background-color: $white-color;
+    background-color: var.$white-color;
 
-    box-shadow: 0px 10px 20px rgba($color: $light-font-color, $alpha: 0.2);
+    box-shadow: 0px 10px 20px rgba($color: var.$light-font-color, $alpha: 0.2);
 
     .modal__header {
       padding-bottom: 25px;
-      box-shadow: 0 1.5px 0 $heavy-gray;
+      box-shadow: 0 1.5px 0 var.$heavy-gray;
 
       button {
         font-weight: 800;
@@ -38,8 +40,8 @@
 
         overflow: hidden;
 
-        color: $light-font-color;
-        background-color: $light-gray;
+        color: var.$light-font-color;
+        background-color: var.$light-gray;
 
         &:hover {
           font-size: 1.1rem;
@@ -49,7 +51,7 @@
 
     .modal__footer {
       padding-top: 25px;
-      box-shadow: 0 -1.5px 0 $heavy-gray;
+      box-shadow: 0 -1.5px 0 var.$heavy-gray;
 
       button {
         margin-left: auto;

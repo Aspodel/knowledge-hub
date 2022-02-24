@@ -1,6 +1,6 @@
 import React from "react";
 import "./Heading.scss";
-import { BulletColor } from "../../utils/enum";
+import { Color } from "../../utils/enum";
 import { tupleNum } from "../../utils/type";
 
 const HeadingSizes = tupleNum(1, 2, 3, 4, 5, 6);
@@ -8,13 +8,13 @@ type HeadingSize = typeof HeadingSizes[number];
 
 interface IHeadingProps {
   size?: HeadingSize;
-  bulletColor?: BulletColor;
+  bulletColor?: Color;
   children: React.ReactNode;
 }
 
 const Heading = ({
   size,
-  bulletColor = BulletColor.Green,
+  bulletColor = Color.Green,
   children,
 }: IHeadingProps) => {
   return (

@@ -1,11 +1,11 @@
 import React from "react";
 import { Iconly } from "react-iconly";
-import Banner from "../components/Panel";
+import Panel from "../components/Panel";
 import HeaderBox from "../components/Heading";
 import Tag from "../components/Tag";
 import Tooltip from "../components/Tooltip";
 import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constans";
-import { BulletColor } from "../utils/enum";
+import { Color } from "../utils/enum";
 
 const NewBlog = () => {
   return (
@@ -42,7 +42,7 @@ const NewBlog = () => {
           </div>
 
           <div className="container">
-            <HeaderBox bulletColor={BulletColor.Blue}>Image & author</HeaderBox>
+            <HeaderBox bulletColor={Color.Blue}>Image & author</HeaderBox>
             <div className="container__label h6">
               Image cover
               <Tooltip content="Should be upload png or jpg">
@@ -93,9 +93,7 @@ const NewBlog = () => {
           </div>
 
           <div className="container">
-            <HeaderBox bulletColor={BulletColor.Purple}>
-              Category & tag
-            </HeaderBox>
+            <HeaderBox bulletColor={Color.Purple}>Category & tag</HeaderBox>
             <div className="container__label h6">
               Categories
               <Tooltip content="Select categories">
@@ -127,14 +125,8 @@ const NewBlog = () => {
             <input type="text" />
 
             <div className="container__list">
-              <span className="tag">
-                React
-                <span className="close-symbol" />
-              </span>
-              <span className="tag">
-                .Net
-                <span className="close-symbol" />
-              </span>
+              <Tag closable>React</Tag>
+              <Tag closable>.Net</Tag>
               <Tag>Web</Tag>
             </div>
           </div>
@@ -143,14 +135,14 @@ const NewBlog = () => {
         <div className="page-layout__main__right">
           <div className="container">
             <div className="container__headerbar flex-between align-center">
-              <HeaderBox bulletColor={BulletColor.Blue}>Preview</HeaderBox>
+              <HeaderBox bulletColor={Color.Blue}>Preview</HeaderBox>
               <span className="expand-symbol" />
             </div>
             <img src={DEFAULT_PROFFILE_IMG_URL} alt="" />
           </div>
         </div>
       </div>
-      {/* <Banner>Chill</Banner> */}
+      {/* <Panel>Chill</{Panel}> */}
     </div>
   );
 };

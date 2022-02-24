@@ -1,12 +1,25 @@
-.tag {
-  display: flex;
-  align-items: center;
-  gap: 3px;
+@use "../../styles/variables" as var;
 
-  background-color: $light-blue;
-  color: $primary;
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 2px;
+  border-radius: 5px;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  // background-color: var.$light-blue;
+  // color: var.$primary;
+  // background-color: #b5e4ca;
+
+  &--default {
+    background-color: var.$heavy-gray;
+  }
 
   .close-symbol {
-    font-size: 0.9rem;
+    // height: 18px;
+    // width: 10px;
   }
 }

@@ -1,7 +1,9 @@
+@use "../../styles/variables" as var;
+
 .panel {
   min-height: 80px;
   padding: 15px 40px;
   // box-shadow: 0 -2px 0 $heavy-gray;
 
-  background-color: $white-color;
+  background-color: var.$white-color;
 }

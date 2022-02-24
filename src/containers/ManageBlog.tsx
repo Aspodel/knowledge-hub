@@ -8,6 +8,11 @@ import ViewMode from "../components/ManageBlog/ViewMode";
 import ToggleView from "../components/ToggleView";
 import useToggle from "../hooks/useToggle";
 import { IBlog } from "../interfaces";
+// import * as heroiconsOutline from "@styled-icons/heroicons-outline";
+// import * as heroiconsSolid from "@styled-icons/heroicons-solid";
+import Icon from "../components/Icon";
+import { Home } from "@styled-icons/heroicons-outline";
+
 function ManageBlog() {
   const [isGridView, setGridView] = useToggle(false);
   const [PreviewModal, setPreviewModal] = useToggle(false);
@@ -64,6 +69,7 @@ function ManageBlog() {
   return (
     <div className="page-layout">
       <div className="page-layout__header">Blogs</div>
+
       <div className="page-layout__main manage-blog">
         <div className="manage-blog__line flex-between align-center">
           <div className="flex">
@@ -77,6 +83,8 @@ function ManageBlog() {
           </div>
           <ToggleView isGridView={isGridView} setGridView={setGridView} />
         </div>
+
+        {/* <Icon icon={Home} /> */}
 
         <ViewMode
           isGridMode={isGridView}

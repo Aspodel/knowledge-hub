@@ -1,3 +1,5 @@
+@use "../../styles/variables" as var;
+
 .checkbox {
   display: flex;
   justify-content: center;
@@ -11,7 +13,7 @@
 
     &:checked ~ .checkbox__checkmark {
       &.-tick {
-        background-color: $primary;
+        background-color: var.$primary;
         border: transparent;
       }
 
@@ -27,7 +29,7 @@
     height: 24px;
     width: 24px;
     border-radius: 7px;
-    border: 2px solid rgba($color: $light-font-color, $alpha: 0.3);
+    border: 2px solid rgba($color: var.$light-font-color, $alpha: 0.3);
 
     background-color: transparent;
 
@@ -48,7 +50,7 @@
 
         width: 7px;
         height: 14px;
-        border: solid $white-color;
+        border: solid var.$white-color;
         border-width: 0 2.4px 2.4px 0;
       }
     }
@@ -63,7 +65,7 @@
         height: 70%;
         border-radius: 3px;
 
-        background-color: $primary;
+        background-color: var.$primary;
       }
     }
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Panel.scss";
 import Button, { IButtonProps } from "../Button";
 
 type BannerProps = {
@@ -10,12 +11,12 @@ type BannerProps = {
 const Banner = ({ className = "", children, buttons }: BannerProps) => {
   return (
     <div
-      className={`banner ${className} ${
+      className={`panel ${className} ${
         children ? "" : "hidden"
       } flex-between align-center`}
     >
-      <div className="banner-left">{children}</div>
-      <div className="banner-right">
+      <div className="panel-left">{children}</div>
+      <div className="panel-right">
         {buttons?.map((button) => {
           console.log(button);
           return (

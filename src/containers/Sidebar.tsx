@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Avatar from "../components/Avatar";
-import NavLink from "../components/Sidebar/NavLink";
+// import NavLink from "../components/Sidebar/NavLink";
 import useToggle from "../hooks/useToggle";
 import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constans";
 
@@ -12,13 +12,13 @@ function Sidebar() {
     <div className={toggleSidebar ? "page__sidebar -active" : "sidebar"}>
       <div className="logo">
         <div>
-          <Avatar imageSource={DEFAULT_PROFFILE_IMG_URL} />
+          <Avatar imgSrc={DEFAULT_PROFFILE_IMG_URL} />
         </div>
       </div>
 
       <div className="sidebar__nav">
         <div className="item__heading">Menu</div>
-        <NavLink to="/" iconName="Home">
+        {/* <NavLink to="/" iconName="Home">
           <span>Dashboard</span>
         </NavLink>
         <NavLink to="/in" iconName="TwoUsers">
@@ -26,7 +26,7 @@ function Sidebar() {
         </NavLink>
         <NavLink to="on" iconName="Paper">
           <span>Blogs</span>
-        </NavLink>
+        </NavLink> */}
       </div>
 
       <div className="sidebar__messages" onClick={setToggleSidebar}>

@@ -14,5 +14,5 @@ export const formatDatetime = (datetime: Date): string => {
 };
 
 // Join multiple classname
-export const joinClassnames = (classNames: string[]) =>
+export const joinClassnames = (classNames: any[]) =>
   classNames.filter(Boolean).join(" ").trim();

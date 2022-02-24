@@ -1,3 +1,5 @@
+@use "../../styles/variables" as var;
+
 .button {
   display: flex;
   align-items: center;
@@ -12,18 +14,18 @@
   border-radius: 6px;
 
   &.-primary {
-    background: $primary;
-    color: $white-color;
+    background: var.$primary;
+    color: var.$white-color;
   }
   &.-secondary {
-    background: $primary;
-    color: $primary;
+    background: var.$primary;
+    color: var.$primary;
   }
   &.-text {
     background-color: transparent;
-    color: $primary;
+    color: var.$primary;
   }
   a {
-    color: $white-color;
+    color: var.$white-color;
   }
 }

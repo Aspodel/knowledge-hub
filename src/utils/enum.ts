@@ -15,7 +15,8 @@ export enum Role {
   Author = "Author",
 }
 
-export enum BulletColor {
+export enum Color {
+  Default = "#272b30",
   Blue = "#b1e5fc",
   Green = "#b5e4ca",
   Orange = "#ffbc9a",

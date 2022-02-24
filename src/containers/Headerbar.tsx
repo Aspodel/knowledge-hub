@@ -23,7 +23,7 @@ function Headerbar() {
           <Iconly name="Notification" />
         </Link>
         <Link to="user-profile">
-          <Avatar imageSource={DEFAULT_PROFFILE_IMG_URL} />
+          <Avatar imgSrc={DEFAULT_PROFFILE_IMG_URL} />
         </Link>
       </div>
     </div>

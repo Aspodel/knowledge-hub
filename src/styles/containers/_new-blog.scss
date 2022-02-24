@@ -51,10 +51,10 @@
         resize: none;
       }
 
-      .close-symbol {
-        height: 18px;
-        width: 18px;
-      }
+        // .close-symbol {
+        //   height: 18px;
+        //   width: 18px;
+        // }
     }
 
     &__left {
@@ -148,20 +148,9 @@
 
         &__list {
           display: flex;
-          align-items: center;
+          // align-items: center;
           column-gap: 10px;
           margin-top: 10px;
-
-          .tag {
-            padding-right: 4px;
-            background-color: $light-blue;
-            color: $primary;
-
-            .close-symbol {
-              margin-left: 3px;
-              font-size: 0.9rem;
-            }
-          }
         }
       }
     }

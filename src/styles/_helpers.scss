@@ -72,17 +72,17 @@
   height: $screen-height;
 }
 
-.tag {
-  font-size: 0.8rem;
-  font-weight: 700;
+// .tag {
+//   font-size: 0.8rem;
+//   font-weight: 700;
 
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
-  border-radius: 5px;
+//   display: inline-flex;
+//   align-items: center;
+//   padding: 4px 10px;
+//   border-radius: 5px;
 
-  background-color: #b5e4ca;
-}
+//   background-color: #b5e4ca;
+// }
 
 .tick-symbol {
   position: relative;
@@ -179,6 +179,8 @@
   }
 
   &::after {
+    font-size: 1rem;
+    // font-size: 0.9375rem;
     content: "x";
     color: $light-font-color;
   }
