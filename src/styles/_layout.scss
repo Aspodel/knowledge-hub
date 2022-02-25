@@ -1,57 +1,73 @@
+// .app {
+//   background: none;
+
+//   .page {
+//     display: flex;
+//     height: 100%;
+//     width: 100%;
+//     background: none;
+
+//     &__container {
+//       flex: 1;
+//       background: none;
+
+//       display: flex;
+//       flex-direction: column;
+//       height: 100%;
+//       // width: 100%;
+
+//       .header-bar {
+//         flex-shrink: 0;
+
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+
+//         overflow: auto;
+//       }
+
+//       .page-layout {
+//         flex-grow: 1;
+
+//         display: flex;
+//         flex-direction: column;
+
+//         background-color: $light-gray;
+//         // padding: 20px 30px 40px 30px;
+
+//         &__header {
+//           flex-shrink: 0;
+//           padding: 20px 30px;
+
+//           font-weight: 700;
+//           font-size: 1.8rem;
+//         }
+
+//         &__main {
+//           flex-grow: 1;
+//           margin: 0 30px 40px;
+//         }
+
+//         .banner {
+//           flex-shrink: 0;
+//         }
+//       }
+//     }
+//   }
+// }
+
 .app {
-  background: none;
+  height: 100vh;
+  width: 100vw;
 
-  .page {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    background: none;
+  display: flex;
+}
 
-    &__container {
-      flex: 1;
-      background: none;
+.layout {
+  flex: 1;
 
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      // width: 100%;
+  display: flex;
+  flex-direction: column;
 
-      .header-bar {
-        flex-shrink: 0;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        overflow: auto;
-      }
-
-      .page-layout {
-        flex-grow: 1;
-
-        display: flex;
-        flex-direction: column;
-
-        background-color: $light-gray;
-        // padding: 20px 30px 40px 30px;
-
-        &__header {
-          flex-shrink: 0;
-          padding: 20px 30px;
-
-          font-weight: 700;
-          font-size: 1.8rem;
-        }
-
-        &__main {
-          flex-grow: 1;
-          margin: 0 30px 40px;
-        }
-
-        .banner {
-          flex-shrink: 0;
-        }
-      }
-    }
-  }
+  overflow: auto;
 }

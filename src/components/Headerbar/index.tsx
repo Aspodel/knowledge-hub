@@ -1,9 +1,10 @@
 import React from "react";
+import "./HeaderBar.scss";
 import { Iconly } from "react-iconly";
 import { Link } from "react-router-dom";
-import Avatar from "../components/Avatar";
-import Button from "../components/Button";
-import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constans";
+import Avatar from "../Avatar";
+import Button from "../Button";
+import { DEFAULT_PROFFILE_IMG_URL } from "../../utils/constants";
 
 function Headerbar() {
   return (
@@ -16,13 +17,13 @@ function Headerbar() {
         <Link to="create">
           <Button>Create</Button>
         </Link>
-        <Link to="chat">
+        <Link to="/">
           <Iconly name="Chat" />
         </Link>
-        <Link to="notification">
+        <Link to="/">
           <Iconly name="Notification" />
         </Link>
-        <Link to="user-profile">
+        <Link to="/">
           <Avatar imgSrc={DEFAULT_PROFFILE_IMG_URL} />
         </Link>
       </div>

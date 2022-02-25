@@ -4,7 +4,7 @@ import Panel from "../components/Panel";
 import HeaderBox from "../components/Heading";
 import Tag from "../components/Tag";
 import Tooltip from "../components/Tooltip";
-import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constans";
+import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constants";
 import { Color } from "../utils/enum";
 
 const NewBlog = () => {

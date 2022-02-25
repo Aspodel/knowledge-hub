@@ -31,19 +31,13 @@
       box-shadow: 0 1.5px 0 var.$heavy-gray;
 
       button {
-        font-weight: 800;
-        line-height: 0.2rem;
-
-        height: 30px;
-        width: 30px;
-        padding: 5px;
+        padding: 6px;
         border-radius: 50%;
-
-        overflow: hidden;
 
         color: var.$light-font-color;
         background-color: var.$light-gray;
 
+        overflow: hidden;
         transition: transform 0.25s;
 
         &:hover {

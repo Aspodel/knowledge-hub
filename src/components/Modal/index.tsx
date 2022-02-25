@@ -32,7 +32,7 @@ const Modal = ({
         <div className="modal__header flex-between align-center">
           <Heading>{title}</Heading>
           <Button onClick={() => setShow(false)} variant="text">
-            <Icon icon={X } />
+            <Icon icon={X} size={20} />
           </Button>
         </div>
         <div className="modal__main">{children}</div>

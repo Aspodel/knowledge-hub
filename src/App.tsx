@@ -2,29 +2,21 @@ import React from "react";
 import "./styles/index.scss";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./containers/Sidebar";
-import Headerbar from "./containers/Headerbar";
-// import UserSetting from "./containers/UserSetting";
 import ManageBlog from "./containers/ManageBlog";
 import NewBlog from "./containers/NewBlog";
-// import Modal from "./components/Modal";
-// import Banner from "./components/Banner";
+import Layout from "./containers/Layout";
 
 function App() {
   return (
     <div className="app">
-      <div className="page">
-        <Sidebar />
-        <div className="page__container relative">
-          <Headerbar />
-          <ManageBlog />  
-          <NewBlog />
-        </div>
-      </div>
+      <Sidebar />
 
       <Routes>
-        <Route index element={<></>} />
-        <Route path="in" element={<></>} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<ManageBlog />} />
+          <Route path="new-blog" element={<NewBlog />} />
+        </Route>
+        <Route path="*" element={<div>This url not found</div>} />
       </Routes>
     </div>
   );
