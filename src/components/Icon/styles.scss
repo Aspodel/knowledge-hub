@@ -1,0 +1,16 @@
+@use "../../styles/variables" as var;
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+
+  color: var.$n4;
+
+  &:hover {
+    color: var.$n6;
+  }
+
+  path {
+    stroke-width: 1.3px;
+  }
+}

@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import Banner from "../components/Panel";
+import "./styles.scss";
+import Banner from "../../components/Panel";
 // import Editor from "../components/Editor";
-import HeaderBox from "../components/Heading";
-import PreviewBlogModal from "../components/ManageBlog/PreviewBlogModal";
+import Heading from "../../components/Heading";
+import PreviewBlogModal from "./PreviewBlogModal";
 // import TestNha from "../components/ManageBlog/TestNha";
-import ViewMode from "../components/ManageBlog/ViewMode";
-import ToggleView from "../components/ToggleView";
-import useToggle from "../hooks/useToggle";
-import { IBlog } from "../interfaces";
-// import * as heroiconsOutline from "@styled-icons/heroicons-outline";
-// import * as heroiconsSolid from "@styled-icons/heroicons-solid";
-import Icon from "../components/Icon";
+import ViewMode from "./ViewMode";
+import ToggleView from "../../components/ToggleView";
+import useToggle from "../../hooks/useToggle";
+import { IBlog } from "../../interfaces";
+import Icon from "../../components/Icon";
 import { Home } from "@styled-icons/heroicons-outline";
 
 function ManageBlog() {
@@ -67,13 +66,13 @@ function ManageBlog() {
   // }, [value]);
 
   return (
-    <div className="page-layout">
-      <div className="page-layout__header">Blogs</div>
+    <div className="page__inner">
+      <div className="page__container manage-blog">
+        <div className="page__title">Queue</div>
 
-      <div className="page-layout__main manage-blog">
         <div className="manage-blog__line flex-between align-center">
           <div className="flex">
-            <HeaderBox>Queue</HeaderBox>
+            <Heading>Blog</Heading>
             <input
               type="search"
               name="Search"

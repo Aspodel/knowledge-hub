@@ -1,27 +1,28 @@
 import React from "react";
 import "./HeaderBar.scss";
-import { Iconly } from "react-iconly";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import Button from "../Button";
 import { DEFAULT_PROFFILE_IMG_URL } from "../../utils/constants";
+import Icon from "../Icon";
+import { Bell, ChatAlt } from "@styled-icons/heroicons-outline";
 
 function Headerbar() {
   return (
     <div className="header-bar">
-      <div className="header-bar__left">
-        <input type="search" placeholder="Search " />
+      <div className="search">
+        <input type="search" placeholder="Type to search" />
       </div>
 
-      <div className="header-bar__right">
-        <Link to="create">
+      <div className="control">
+        <Link to="/">
           <Button>Create</Button>
         </Link>
         <Link to="/">
-          <Iconly name="Chat" />
+          <Icon icon={ChatAlt} size={34} />
         </Link>
         <Link to="/">
-          <Iconly name="Notification" />
+          <Icon icon={Bell} size={34} />
         </Link>
         <Link to="/">
           <Avatar imgSrc={DEFAULT_PROFFILE_IMG_URL} />

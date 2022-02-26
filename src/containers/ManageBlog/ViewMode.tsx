@@ -1,9 +1,10 @@
 import React from "react";
-import { Iconly } from "react-iconly";
 import { IBlog } from "../../interfaces";
-import Button from "../Button";
-import Checkbox from "../Checkbox";
-import Tag from "../Tag";
+import Button from "../../components/Button";
+import Checkbox from "../../components/Checkbox";
+import Tag from "../../components/Tag";
+import Icon from "../../components/Icon";
+import { Check, Eye, Trash } from "@styled-icons/heroicons-outline";
 
 interface ViewModeProps {
   data?: IBlog[];
@@ -75,7 +76,7 @@ const ViewMode = ({
           </Tag>
         </span>
         <span className="view-mode__item__time">
-          {isGridMode && <Iconly name="TimeCircle" size={20} />}
+          {/* {isGridMode && <Iconly name="TimeCircle" size={20} />} */}
           <time>Mar 1, 2021 at 1:03 AM</time>
         </span>
         <span className="view-mode__item__authors">
@@ -88,13 +89,13 @@ const ViewMode = ({
         </span>
         <span className="view-mode__item__toolbox flex-center">
           <Button variant="text" onClick={() => showPreviewMode()}>
-            <Iconly name="Show" />
+            <Icon icon={Eye} />
           </Button>
           <Button variant="text">
-            <Iconly name="Delete" />
+            <Icon icon={Trash} />
           </Button>
           <Button variant="text">
-            <span className="tick-symbol" />
+            <Icon icon={Check} />
           </Button>
         </span>
       </label>
@@ -114,12 +115,10 @@ const ViewMode = ({
           <span>Blog title: First blog of aspodel tran</span>
         </span>
         <span className="view-mode__item__status">
-          <Tag color="green" >
-            Published
-          </Tag>
+          <Tag color="green">Published</Tag>
         </span>
         <span className="view-mode__item__time">
-          {isGridMode && <Iconly name="TimeCircle" size={20} />}
+          {/* {isGridMode && <Iconly name="TimeCircle" size={20} />} */}
           <time>Mar 1, 2021 at 1:03 AM</time>
         </span>
         <span className="view-mode__item__authors">
@@ -132,13 +131,13 @@ const ViewMode = ({
         </span>
         <span className="view-mode__item__toolbox flex-center">
           <Button variant="text" onClick={() => showPreviewMode()}>
-            <Iconly name="Show" />
+            <Icon icon={Eye} />
           </Button>
           <Button variant="text">
-            <Iconly name="Delete" />
+            <Icon icon={Trash} />
           </Button>
           <Button variant="text">
-            <span className="tick-symbol" />
+            <Icon icon={Check} />
           </Button>
         </span>
       </label>

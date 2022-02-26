@@ -34,14 +34,21 @@
         padding: 6px;
         border-radius: 50%;
 
-        color: var.$light-font-color;
-        background-color: var.$light-gray;
+        background-color: var.$n3;
 
         overflow: hidden;
         transition: transform 0.25s;
 
         &:hover {
           transform: rotate(90deg);
+        }
+
+        .icon {
+          color: var.$n6;
+
+          path {
+            stroke-width: 2px;
+          }
         }
       }
     }

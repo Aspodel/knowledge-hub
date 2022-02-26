@@ -48,15 +48,23 @@ p {
 input {
   padding: 10px;
   border: none;
-  outline: none;
   border-radius: 5px;
 
-  background-color: $light-gray;
+  background-color: $n2;
 }
 
 button,
 a {
   cursor: pointer;
+
+  * {
+    cursor: pointer;
+  }
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
 }
 
 button,

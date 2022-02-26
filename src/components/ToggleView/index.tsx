@@ -1,7 +1,8 @@
 import React from "react";
 import "./ToggleView.scss";
-import { Iconly } from "react-iconly";
 import Button from "../Button";
+import { MenuAlt4, ViewGrid } from "@styled-icons/heroicons-outline";
+import Icon from "../Icon";
 
 type ToggleViewProps = {
   isGridView: boolean;
@@ -16,14 +17,14 @@ const ToggleView = ({ isGridView, setGridView }: ToggleViewProps) => {
         className={isGridView ? "" : "-active"}
         onClick={() => setGridView(false)}
       >
-        <Iconly name="Filter" />
+        <Icon icon={MenuAlt4} size={30} />
       </Button>
       <Button
         variant="text"
         className={isGridView ? "-active" : ""}
         onClick={() => setGridView(true)}
       >
-        <Iconly name="Category" />
+        <Icon icon={ViewGrid} size={30} />
       </Button>
     </div>
   );

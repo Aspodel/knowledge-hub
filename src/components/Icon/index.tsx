@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.scss";
 import { StyledIcon } from "@styled-icons/styled-icon";
 import { joinClassnames } from "../../utils/helpers";
 import { Color } from "../../utils/enum";
@@ -14,18 +15,13 @@ interface IIconProps {
 
 const Icon = ({
   icon: IconCmp,
-  size = 18,
-  color = Color.Default,
+  size = 24,
+  color,
   className,
   style,
   onClick,
 }: IIconProps) => {
-  let defaultStyles = {
-    display: "inline-flex",
-    alignItems: "center",
-    color: color,
-    // cursor: "pointer",
-  };
+  let defaultStyles = { color: color };
   let styles = { ...defaultStyles, ...style };
 
   return (
