@@ -1,9 +1,7 @@
 @use "../../styles/variables" as var;
 
 .manage-blog {
-  background-color: var.$white-color;
-
-  padding: 30px 20px;
+  // padding: 30px 20px;
   border-radius: 5px;
 
   .manage-blog__line {
@@ -67,20 +65,31 @@
       }
 
       &__toolbox {
+        gap: 14px;
+
         button {
-          height: 25px;
-          width: 25px;
-          padding: 5px;
-          margin: 0 10px;
+          flex-shrink: 0;
+
+          height: 34px;
+          width: 34px;
+          padding: 0px;
           border-radius: 50%;
-          box-sizing: content-box;
 
           color: var.$light-font-color;
           background-color: var.$white-color;
 
           &:hover {
-            color: var.$font-color;
-            transform: scale(1.1);
+            .icon {
+              color: var.$p1;
+            }
+          }
+        }
+
+        .icon {
+          height: 22px;
+          width: 22px;
+          path {
+            stroke-width: 1.6px;
           }
         }
       }
@@ -161,7 +170,6 @@
           flex: 0.5;
 
           button {
-            margin: 0 15px;
             visibility: hidden;
           }
         }

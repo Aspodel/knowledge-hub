@@ -1,10 +1,14 @@
 import React from "react";
-import Panel from "../components/Panel";
-import HeaderBox from "../components/Heading";
-import Tag from "../components/Tag";
-import Tooltip from "../components/Tooltip";
-import { DEFAULT_PROFFILE_IMG_URL } from "../utils/constants";
-import { Color } from "../utils/enum";
+import "./styles.scss";
+import Panel from "../../components/Panel";
+import HeaderBox from "../../components/Heading";
+import Tag from "../../components/Tag";
+import Tooltip from "../../components/Tooltip";
+import { DEFAULT_PROFFILE_IMG_URL } from "../../utils/constants";
+import { Color } from "../../utils/enum";
+import { ExclamationCircle } from "@styled-icons/heroicons-solid";
+import Icon from "../../components/Icon";
+import { Download } from "@styled-icons/heroicons-outline";
 
 const NewBlog = () => {
   return (
@@ -14,62 +18,27 @@ const NewBlog = () => {
         <div className="page-layout__main__left">
           <div className="container">
             <HeaderBox>Title & description</HeaderBox>
+
             <div className="container__label h6">
               Blog title
               <Tooltip content="Title should be between 10 and 120 characters">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
               </Tooltip>
             </div>
             <input type="text" />
-            <div className="container__label h6">
-              Description
-              <Tooltip content="Write your description for your blog">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
-              </Tooltip>
-            </div>
-            <div contentEditable className="textarea" />
-          </div>
-
-          <div className="container">
-            <HeaderBox bulletColor={Color.Blue}>Image & author</HeaderBox>
-            <div className="container__label h6">
-              Image cover
-              <Tooltip content="Should be upload png or jpg">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
-              </Tooltip>
-            </div>
-            <div className="container__upload-image">
-              <label className="custom-file-upload flex align-center">
-                <input type="file" accept="image/*" />
-                {/* <Iconly name="Upload" /> */}
-                <span className="h6">Click or drop image</span>
-              </label>
-            </div>
 
             <div className="container__label h6">
               Author
-              <Tooltip content="Select authors of blog">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
+              <Tooltip content="Should be under 5 authors">
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
               </Tooltip>
             </div>
 
@@ -89,19 +58,51 @@ const NewBlog = () => {
                 </div>
               </Tooltip>
             </div>
+
+            <div className="container__label h6">
+              Description
+              <Tooltip content="Write your description for your blog">
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
+              </Tooltip>
+            </div>
+            <div contentEditable className="textarea" />
+          </div>
+
+          <div className="container">
+            <HeaderBox bulletColor={Color.Blue}>Image</HeaderBox>
+            <div className="container__label h6">
+              Image cover
+              <Tooltip content="Should be upload png or jpg">
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
+              </Tooltip>
+            </div>
+            <div className="container__upload-image">
+              <label className="custom-file-upload flex align-center">
+                <input type="file" accept="image/*" />
+                <Icon icon={Download} />
+                <span className="h6">Click or drop image</span>
+              </label>
+            </div>
           </div>
 
           <div className="container">
             <HeaderBox bulletColor={Color.Purple}>Category & tag</HeaderBox>
             <div className="container__label h6">
               Categories
-              <Tooltip content="Select categories">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
+              <Tooltip content="Should be between 1 and 4 category">
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
               </Tooltip>
             </div>
 
@@ -111,13 +112,12 @@ const NewBlog = () => {
 
             <div className="container__label h6">
               Tags
-              <Tooltip content="Select tags">
-                {/* <Iconly
-                  size={14}
-                  name="InfoCircle"
-                  set="bold"
-                  primaryColor="#6f767e"
-                /> */}
+              <Tooltip content="Should be between 1 and 10 tags">
+                <Icon
+                  icon={ExclamationCircle}
+                  size={16}
+                  className="icon-exclamation"
+                />
               </Tooltip>
             </div>
 

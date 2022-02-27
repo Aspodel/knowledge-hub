@@ -4,7 +4,14 @@ import Button from "../../components/Button";
 import Checkbox from "../../components/Checkbox";
 import Tag from "../../components/Tag";
 import Icon from "../../components/Icon";
-import { Check, Eye, Trash } from "@styled-icons/heroicons-outline";
+import {
+  ArrowRight,
+  ArrowSmRight,
+  Check,
+  Clock,
+  Eye,
+  Trash,
+} from "@styled-icons/heroicons-outline";
 
 interface ViewModeProps {
   data?: IBlog[];
@@ -76,7 +83,7 @@ const ViewMode = ({
           </Tag>
         </span>
         <span className="view-mode__item__time">
-          {/* {isGridMode && <Iconly name="TimeCircle" size={20} />} */}
+          {isGridMode && <Icon icon={Clock} size={20} />}
           <time>Mar 1, 2021 at 1:03 AM</time>
         </span>
         <span className="view-mode__item__authors">
@@ -88,14 +95,14 @@ const ViewMode = ({
           </div>
         </span>
         <span className="view-mode__item__toolbox flex-center">
-          <Button variant="text" onClick={() => showPreviewMode()}>
-            <Icon icon={Eye} />
+          <Button variant="text">
+            <Icon icon={Check} />
           </Button>
           <Button variant="text">
             <Icon icon={Trash} />
           </Button>
-          <Button variant="text">
-            <Icon icon={Check} />
+          <Button variant="text" onClick={() => showPreviewMode()}>
+            <Icon icon={ArrowSmRight} />
           </Button>
         </span>
       </label>
@@ -118,7 +125,7 @@ const ViewMode = ({
           <Tag color="green">Published</Tag>
         </span>
         <span className="view-mode__item__time">
-          {/* {isGridMode && <Iconly name="TimeCircle" size={20} />} */}
+          {isGridMode && <Icon icon={Clock} size={20} />}
           <time>Mar 1, 2021 at 1:03 AM</time>
         </span>
         <span className="view-mode__item__authors">
@@ -130,14 +137,14 @@ const ViewMode = ({
           </div>
         </span>
         <span className="view-mode__item__toolbox flex-center">
-          <Button variant="text" onClick={() => showPreviewMode()}>
-            <Icon icon={Eye} />
+          <Button variant="text">
+            <Icon icon={Check} />
           </Button>
           <Button variant="text">
             <Icon icon={Trash} />
           </Button>
-          <Button variant="text">
-            <Icon icon={Check} />
+          <Button variant="text" onClick={() => showPreviewMode()}>
+            <Icon icon={ArrowSmRight} />
           </Button>
         </span>
       </label>

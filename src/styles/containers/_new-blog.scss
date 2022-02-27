@@ -6,7 +6,7 @@
 
     .container {
       padding: 35px 30px;
-      border-radius: 8px;
+      border-radius: 10px;
 
       background-color: $white-color;
 
@@ -32,6 +32,7 @@
         font-size: 1rem;
 
         &:focus {
+          border: 1px solid $p1;
         }
       }
 
@@ -51,10 +52,9 @@
         resize: none;
       }
 
-        // .close-symbol {
-        //   height: 18px;
-        //   width: 18px;
-        // }
+      .icon-exclamation {
+        color: $shades1;
+      }
     }
 
     &__left {
@@ -88,8 +88,9 @@
 
             cursor: pointer;
 
-            svg {
+            .icon {
               margin-right: 8px;
+              color: $n6;
             }
             span {
               cursor: pointer;

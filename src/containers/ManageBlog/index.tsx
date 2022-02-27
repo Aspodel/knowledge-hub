@@ -18,8 +18,6 @@ function ManageBlog() {
   const [previewBlog, setPreviewBlog] = useState<IBlog>();
   const [checkedList, setCheckedList] = useState<number[]>([]);
 
-  // const [value, setValue] = useState();
-
   //Set blog data to preview and turn on Preview Modal
   const showPreviewMode = (blog: IBlog): void => {
     console.log(blog);
@@ -68,30 +66,30 @@ function ManageBlog() {
   return (
     <div className="page__inner">
       <div className="page__container manage-blog">
-        <div className="page__title">Queue</div>
+        <div className="page__title h3">Queue</div>
 
-        <div className="manage-blog__line flex-between align-center">
-          <div className="flex">
-            <Heading>Blog</Heading>
-            <input
-              type="search"
-              name="Search"
-              id=""
-              placeholder="Search blog"
-            />
+        <div className="card">
+          <div className="manage-blog__line flex-between align-center">
+            <div className="flex">
+              <Heading>Blog</Heading>
+              <input
+                type="search"
+                name="Search"
+                id=""
+                placeholder="Search blog"
+              />
+            </div>
+            <ToggleView isGridView={isGridView} setGridView={setGridView} />
           </div>
-          <ToggleView isGridView={isGridView} setGridView={setGridView} />
+
+          <ViewMode
+            isGridMode={isGridView}
+            showPreviewMode={showPreviewMode}
+            handleCheckboxChange={handleCheckoxChange}
+            handleCheckAllChange={handleCheckAllChange}
+            checkedList={checkedList}
+          />
         </div>
-
-        {/* <Icon icon={Home} style={{ color: "green" }} /> */}
-
-        <ViewMode
-          isGridMode={isGridView}
-          showPreviewMode={showPreviewMode}
-          handleCheckboxChange={handleCheckoxChange}
-          handleCheckAllChange={handleCheckAllChange}
-          checkedList={checkedList}
-        />
 
         {/* <TestNha hehe={"1"} yeah={"1"} /> */}
 

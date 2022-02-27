@@ -2,6 +2,7 @@ import React from "react";
 import "./Heading.scss";
 import { Color } from "../../utils/enum";
 import { tupleNum } from "../../utils/type";
+import { joinClassnames } from "../../utils/helpers";
 
 const HeadingSizes = tupleNum(1, 2, 3, 4, 5, 6);
 type HeadingSize = typeof HeadingSizes[number];
@@ -13,12 +14,12 @@ interface IHeadingProps {
 }
 
 const Heading = ({
-  size,
+  size = 4,
   bulletColor = Color.Green,
   children,
 }: IHeadingProps) => {
   return (
-    <div className="heading">
+    <div className={joinClassnames(["heading", "h" + size])}>
       <div
         className="heading__bullet"
         style={{ backgroundColor: bulletColor }}

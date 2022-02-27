@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/index.scss";
 import { Route, Routes } from "react-router-dom";
-import Sidebar from "./containers/Sidebar";
+import Sidebar from "./components/Sidebar";
 import ManageBlog from "./containers/ManageBlog";
 import NewBlog from "./containers/NewBlog";
 import Layout from "./containers/Layout";
