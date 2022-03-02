@@ -24,8 +24,15 @@
   }
 
   &__menu {
+    position: relative;
     display: flex;
     flex-direction: column;
+
+    &:hover {
+      .test {
+        display: inline;
+      }
+    }
   }
 
   &__item {

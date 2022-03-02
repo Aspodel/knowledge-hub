@@ -6,6 +6,8 @@
 
   color: var.$n4;
 
+  transition: color 0.2s;
+
   &:hover {
     color: var.$n6;
   }

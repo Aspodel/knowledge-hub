@@ -27,8 +27,9 @@ function Sidebar() {
           }
           children={({ isActive }) => (
             <>
-              <Icon icon={isActive ? HomeSolid : Home} />
-              Home
+              <Icon icon={isActive ? HomeSolid : Home} size={26} />
+              Hello
+              <div className="test">Test</div>
             </>
           )}
         />
@@ -40,7 +41,10 @@ function Sidebar() {
           }
           children={({ isActive }) => (
             <>
-              <Icon icon={isActive ? DocumentTextSolid : DocumentText} />
+              <Icon
+                icon={isActive ? DocumentTextSolid : DocumentText}
+                size={26}
+              />
               New Blog
             </>
           )}

@@ -1,6 +1,6 @@
 import React from "react";
-import "./Avatar.scss";
-import { tuple } from "../../utils/type";
+import "./styles.scss";
+import { tuple, tupleNum } from "../../utils/type";
 
 const UserStatusTypes = tuple("online", "offline");
 type UserStatusType = typeof UserStatusTypes[number];
@@ -8,12 +8,14 @@ type UserStatusType = typeof UserStatusTypes[number];
 interface IAvatarProps {
   status?: UserStatusType;
   imgSrc: string;
+  size?: number;
 }
 
-const Avatar = ({ status, imgSrc }: IAvatarProps) => {
+const Avatar = ({ status, imgSrc, size }: IAvatarProps) => {
   return (
-    <div className="avatar">
+    <div className="avatar" style={{ height: size, width: size }}>
       <img src={imgSrc} alt="avatar" />
+      
     </div>
   );
 };

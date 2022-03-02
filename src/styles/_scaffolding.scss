@@ -7,7 +7,7 @@ html {
 *::before,
 *::after {
   box-sizing: border-box;
-
+  vertical-align: baseline;
   font-family: $font-family;
 }
 
@@ -34,7 +34,7 @@ p {
 a {
   color: $link-color;
   text-decoration: none;
-  font-weight: 600;
+  // font-weight: 600;
 
   &:hover {
     color: lighten($primary, 10%);
