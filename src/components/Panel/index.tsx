@@ -2,13 +2,13 @@ import React from "react";
 import "./Panel.scss";
 import Button, { IButtonProps } from "../Button";
 
-type BannerProps = {
+type PanelProps = {
   className?: string;
   children?: React.ReactNode;
   buttons?: IButtonProps[];
 };
 
-const Banner = ({ className = "", children, buttons }: BannerProps) => {
+const Panel = ({ className = "", children, buttons }: PanelProps) => {
   return (
     <div
       className={`panel ${className} ${
@@ -18,7 +18,7 @@ const Banner = ({ className = "", children, buttons }: BannerProps) => {
       <div className="panel-left">{children}</div>
       <div className="panel-right">
         {buttons?.map((button) => {
-          console.log(button);
+          // console.log(button);
           return (
             <React.Fragment key={Math.random()}>
               <Button
@@ -37,4 +37,4 @@ const Banner = ({ className = "", children, buttons }: BannerProps) => {
   );
 };
 
-export default React.memo(Banner);
+export default React.memo(Panel);

@@ -57,9 +57,22 @@
       position: relative;
       height: 100%;
 
-      button:focus + .dropdown {
-        visibility: visible;
-        opacity: 1;
+      &:focus {
+        background-color: rebeccapurple;
+        color: royalblue;
+      }
+
+      &--active {
+        .dropdown {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+
+    &__noti {
+      .dropdown {
+        right: -100px;
       }
     }
   }
@@ -79,8 +92,8 @@
 
     background-color: var.$n1;
 
-    // visibility: hidden;
-    // opacity: 0;
+    visibility: hidden;
+    opacity: 0;
     transform: translateY(3px);
     transition: all 0.2s;
 
@@ -162,6 +175,7 @@
     &__line {
       display: flex;
       align-items: center;
+      margin-bottom: 4px;
       padding-right: 24px;
       font-weight: 700;
     }
