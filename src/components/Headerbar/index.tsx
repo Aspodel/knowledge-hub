@@ -23,13 +23,13 @@ function Headerbar() {
     console.log("on blur");
   };
 
-  useEffect(() => {
-    console.log("dropdown change");
-  }, [messageDropDown]);
+  // useEffect(() => {
+  //   console.log("dropdown change");
+  // }, [messageDropDown]);
 
-  useEffect(() => {
-    console.log("option change");
-  }, [messageOption]);
+  // useEffect(() => {
+  //   console.log("option change");
+  // }, [messageOption]);
 
   // console.log("re-render");
 
@@ -116,10 +116,9 @@ function Headerbar() {
         </div>
 
         <div
-          className={
-            "control__item control__noti" +
-            (notificationDropDown ? " control__item--active" : "")
-          }
+          className={`control__item control__noti${
+            notificationDropDown ? " control__item--active" : ""
+          }`}
           onClick={() => setNotificationDropDown()}
           onBlur={(e) => {
             if (!e.currentTarget.contains(e.relatedTarget)) {

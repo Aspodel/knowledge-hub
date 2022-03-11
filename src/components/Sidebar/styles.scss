@@ -50,18 +50,29 @@
     white-space: nowrap;
 
     &:hover {
-      color: var.$n6;
+      color: var.$p1;
+
+      .icon {
+        color: var.$p1;
+      }
     }
 
     &--active {
-      color: var.$n6;
-      background: #efefef;
-      box-shadow: inset 0px -2px 1px rgb(0 0 0 / 5%), inset 0px 1px 1px #ffffff;
+      color: var.$p1;
+      background-color: rgba($color: var.$s3, $alpha: 0.5);
+
+      &:hover {
+        color: var.$p1;
+      }
+
+      .icon {
+        color: var.$p1;
+      }
     }
 
     .icon {
       path {
-        stroke-width: 2px;
+        stroke-width: 1.6px;
       }
     }
   }

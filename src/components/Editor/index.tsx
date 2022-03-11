@@ -41,6 +41,7 @@
 //       autofocus: true,
 //       logLevel: "ERROR",
 //       data: editorData,
+
 //       onReady: () => {
 //         ejInstance.current = editor;
 //       },
@@ -83,3 +84,25 @@
 // };
 
 // export default Editor;
+
+import React from "react";
+import { createReactEditorJS } from "react-editor-js";
+import { Tools } from "./toolConfig";
+
+interface IEditorProps {
+  id?: string;
+  readOnly?: boolean;
+  defaultData?: object;
+  data?: object;
+  setData?: () => void;
+}
+
+const ReactEditorJS = createReactEditorJS();
+
+const Editor = ({ id, readOnly, data, setData }: IEditorProps) => {
+  return (
+    <ReactEditorJS defaultValue={data} tools={Tools} readOnly={readOnly} />
+  );
+};
+
+export default Editor;

@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import ManageBlog from "./containers/ManageBlog";
 import NewBlog from "./containers/NewBlog";
 import Layout from "./containers/Layout";
+import BlogDetail from "./components/BlogDetail";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<ManageBlog />} />
           <Route path="new-blog" element={<NewBlog />} />
+          <Route path="detail" element={<BlogDetail />} />
         </Route>
         <Route path="*" element={<div>This url not found</div>} />
       </Routes>

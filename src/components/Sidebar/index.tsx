@@ -4,11 +4,7 @@ import "./styles.scss";
 import Avatar from "../Avatar";
 import { DEFAULT_PROFFILE_IMG_URL } from "../../utils/constants";
 import Icon from "../Icon";
-import { Home, DocumentText } from "@styled-icons/heroicons-outline";
-import {
-  Home as HomeSolid,
-  DocumentText as DocumentTextSolid,
-} from "@styled-icons/heroicons-solid";
+import { Home, DocumentText, Newspaper } from "@styled-icons/heroicons-outline";
 
 function Sidebar() {
   // const [toggleSidebar, setToggleSidebar] = useToggle(true);
@@ -25,30 +21,30 @@ function Sidebar() {
           className={({ isActive }) =>
             "sidebar__item" + (isActive ? " sidebar__item--active" : "")
           }
-          children={({ isActive }) => (
-            <>
-              <Icon icon={isActive ? HomeSolid : Home} size={26} />
-              Hello
-              <div className="test">Test</div>
-            </>
-          )}
-        />
+        >
+          <Icon icon={Home} size={26} />
+          <span>Home</span>
+        </NavLink>
 
         <NavLink
           to="/new-blog"
           className={({ isActive }) =>
             "sidebar__item" + (isActive ? " sidebar__item--active" : "")
           }
-          children={({ isActive }) => (
-            <>
-              <Icon
-                icon={isActive ? DocumentTextSolid : DocumentText}
-                size={26}
-              />
-              New Blog
-            </>
-          )}
-        />
+        >
+          <Icon icon={DocumentText} size={26} />
+          <span>New Blog</span>
+        </NavLink>
+
+        <NavLink
+          to="/detail"
+          className={({ isActive }) =>
+            "sidebar__item" + (isActive ? " sidebar__item--active" : "")
+          }
+        >
+          <Icon icon={Newspaper} size={26} />
+          <span>Detail</span>
+        </NavLink>
       </div>
     </div>
   );
