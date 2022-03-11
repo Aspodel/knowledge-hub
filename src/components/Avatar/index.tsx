@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { tuple, tupleNum } from "../../utils/type";
+import { tuple } from "../../utils/type";
 
 const UserStatusTypes = tuple("online", "offline");
 type UserStatusType = typeof UserStatusTypes[number];

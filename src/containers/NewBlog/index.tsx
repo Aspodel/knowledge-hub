@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import Panel from "../../components/Panel";
+// import Panel from "../../components/Panel";
 import HeaderBox from "../../components/Heading";
 import Tag from "../../components/Tag";
 import Tooltip from "../../components/Tooltip";

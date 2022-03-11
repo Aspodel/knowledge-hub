@@ -9,8 +9,6 @@ import ViewMode from "./ViewMode";
 import ToggleView from "../../components/ToggleView";
 import useToggle from "../../hooks/useToggle";
 import { IBlog } from "../../interfaces";
-import Icon from "../../components/Icon";
-import { Home } from "@styled-icons/heroicons-outline";
 
 function ManageBlog() {
   const [isGridView, setGridView] = useToggle(false);

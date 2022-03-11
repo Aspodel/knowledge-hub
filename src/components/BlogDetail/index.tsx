@@ -1,11 +1,10 @@
 import React from "react";
 import { Data } from "./data";
-import { createReactEditorJS } from "react-editor-js";
-import { Tools } from "../Editor/toolConfig";
+// import { createReactEditorJS } from "react-editor-js";
 import Editor from "../Editor";
 
 const BlogDetail = () => {
-  const ReactEditorJS = createReactEditorJS();
+  // const ReactEditorJS = createReactEditorJS();
 
   return (
     <div className="blog-detail">

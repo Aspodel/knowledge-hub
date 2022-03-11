@@ -5,11 +5,9 @@ import Checkbox from "../../components/Checkbox";
 import Tag from "../../components/Tag";
 import Icon from "../../components/Icon";
 import {
-  ArrowRight,
   ArrowSmRight,
   Check,
   Clock,
-  Eye,
   Trash,
 } from "@styled-icons/heroicons-outline";
 

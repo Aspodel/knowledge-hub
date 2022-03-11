@@ -1,4 +1,4 @@
-import React, { EventHandler, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
@@ -8,7 +8,6 @@ import Icon from "../Icon";
 import {
   Annotation,
   Bell,
-  ChatAlt,
   DotsHorizontal,
 } from "@styled-icons/heroicons-outline";
 import useToggle from "../../hooks/useToggle";
