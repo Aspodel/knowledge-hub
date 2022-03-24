@@ -1,4 +1,6 @@
 import React from "react";
+import { Data } from "../../components/BlogDetail/data";
+import Editor from "../../components/Editor";
 import Modal from "../../components/Modal";
 
 type PreviewBlogModalProps = {
@@ -21,8 +23,7 @@ const PreviewBlogModal = ({
         className="Preview-blog-modal"
         footerButtons={[{ children: "Publish", onClick: () => setShow(false) }]}
       >
-        <h2>First blog: This is your first blog</h2>
-        {children}
+        <Editor defaultData={Data} readOnly />
       </Modal>
     </>
   );

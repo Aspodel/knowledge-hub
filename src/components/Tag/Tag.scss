@@ -37,6 +37,11 @@
   }
 
   &--closable {
-    padding-right: 8px;
+    padding-right: 6px;
+
+    .icon:hover {
+      background-color: rgba($color: var.$shades1, $alpha: 0.6);
+      color: rgba($color: var.$n5, $alpha: 0.5);
+    }
   }
 }

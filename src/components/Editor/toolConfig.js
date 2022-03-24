@@ -17,8 +17,8 @@ export const Tools = {
     inlineToolbar: ["marker", "link"],
     config: {
       placeholder: "Header",
-      levels: [1, 2, 3],
-      defaultLevel: 2,
+      levels: [1, 2, 3, 4],
+      defaultLevel: 3,
     },
     shortcut: "CTRL+SHIFT+H",
   },

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { useCRUD } from "../hooks/useCRUD";
+import { useCRUD } from "../hooks/OlduseCRUD";
 import { IBlog } from "../interfaces";
 
 interface IBlogsContextModel {

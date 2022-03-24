@@ -16,11 +16,11 @@
 
   .modal {
     height: fit-content;
-    min-width: 300px;
+    max-height: 1000px;
+    min-width: 600px;
     padding: 30px 20px;
-    margin-top: 200px;
+    margin: auto;
     border-radius: 8px;
-    // margin-top: 30px;
 
     background-color: var.$white-color;
 
@@ -64,6 +64,12 @@
         // font-weight: 600;
         font-size: 0.8rem;
       }
+    }
+  }
+
+  @media (min-width: 651px) {
+    .codex-editor--narrow .codex-editor__redactor {
+      margin-right: 0;
     }
   }
 }

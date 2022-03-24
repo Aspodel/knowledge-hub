@@ -1,4 +1,5 @@
 import { RouteObject, PathRouteProps } from "react-router";
+import { string } from "yup";
 import { BlogStatus, NotificationType } from "../utils/enum";
 
 export interface IDTO<T = number> {
@@ -26,6 +27,11 @@ export interface IRole extends IDTO<string> {
 
 export interface IAuthor extends IUser {
   blogs: number[];
+}
+
+export interface ILoginModel {
+  username: string;
+  password: string;
 }
 
 export interface IBlog extends IDTO {

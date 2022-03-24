@@ -16,3 +16,10 @@ export const formatDatetime = (datetime: Date): string => {
 // Join multiple classname
 export const joinClassnames = (classNames: any[]) =>
   classNames.filter(Boolean).join(" ").trim();
+
+export const convertToSlug = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
+};
