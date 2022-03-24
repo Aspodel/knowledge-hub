@@ -15,12 +15,14 @@ import { convertToSlug } from "../../utils/helpers";
 import { blogService } from "../../services/blogService";
 import { Data } from "../../components/BlogDetail/data";
 import { userService } from "../../services/userService";
+import Select from "../../components/Select";
 
 const NewBlog = () => {
   const { get, create: createBlog } = blogService();
   const { get: getUsers } = userService();
 
   const {
+    watch,
     register,
     setValue,
     handleSubmit,
@@ -53,16 +55,22 @@ const NewBlog = () => {
     setValue(dataName, [e.target.value]);
   };
 
+  const testSubmit = (data: any) => {
+    // alert(JSON.stringify(data));
+    // console.log(watch("example"));
+  };
+
   return (
     <div className="page__inner">
       <div className="page__container new-blog">
         <div className="page__title h3">New Blog</div>
 
         <div className="page-layout__main">
-          <form className="page-layout__main__left" onSubmit={onSubmit}>
-            <button type="submit" onSubmit={onSubmit}>
-              Submit
-            </button>
+          <form
+            className="page-layout__main__left"
+            onSubmit={handleSubmit(testSubmit)}
+          >
+            <button type="submit" /* onSubmit={onSubmit} */>Submit</button>
             <div className="container">
               <HeaderBox>Title & description</HeaderBox>
 
@@ -89,10 +97,11 @@ const NewBlog = () => {
                 </Tooltip>
               </div>
 
-              <input
+              {/* <input
                 type="text"
                 list="author-list"
-                /* {...register("authors")} */ onChange={handleChange}
+                {...register("authors")} 
+                onChange={handleChange}
                 name="authors"
               />
               <datalist id="author-list">
@@ -100,7 +109,14 @@ const NewBlog = () => {
                 <option>Saab</option>
                 <option>Mercedes</option>
                 <option>Audi</option>
-              </datalist>
+              </datalist> */}
+
+              {/* <Select
+                datalist={["rainbow", "rain", "sun", "night", "cloud"]}
+                // {...register("example")}
+              /> */}
+
+              <button type="submit">Submit</button>
 
               <div className="container__authors">
                 <Tooltip content="Aspodel Tran" position="bottom">
@@ -127,7 +143,7 @@ const NewBlog = () => {
                   />
                 </Tooltip>
               </div>
-              <textarea className="textarea" {...register("description")} />
+              {/* <textarea className="textarea" {...register("description")} /> */}
             </div>
 
             <div className="container">

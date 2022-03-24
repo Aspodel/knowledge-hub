@@ -1,81 +1,257 @@
 import React from "react";
-import { UseFormRegister } from "react-hook-form";
+import {
+  UseFormRegister,
+  UseFormRegisterReturn,
+  UseFormSetValue,
+} from "react-hook-form";
 import useToggle from "../../hooks/useToggle";
-import { IUser } from "../../interfaces";
+import { IBlog, IUser } from "../../interfaces";
 
-interface ISelectProps<T = string | number | IUser> {
-  datalist: T[];
-  register: UseFormRegister<T>;
+interface ISelectProps {
+  datalist: any[];
   type?: "multiple" | "single";
-  max?: number;
+  maxTags?: number;
+  register: UseFormRegister<any>;
+  name: string;
+  setValue: UseFormSetValue<any>;
 }
 
-const Select = <T extends string | number | IUser>({
-  datalist = [],
-  register,
-  type = "multiple",
-}: ISelectProps<T>) => {
-  const [isShow, setShow] = useToggle(false);
-  const [inputValue, setInputValue] = React.useState("");
-  const [isKeyReleased, setIsKeyReleased] = React.useState(false);
+const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
+  ({ datalist, type = "multiple", maxTags, register, name, setValue }, ref) => {
+    const [isShow, setShow] = useToggle(false);
+    const [inputValue, setInputValue] = React.useState("");
+    // const [tags, setTags] = React.useState<
+    //   Array<{
+    //     key: string;
+    //     value: string;
+    //   }>
+    // >([]);
+    const [tags, setTags] = React.useState<string[]>([]);
+    const [isKeyReleased, setIsKeyReleased] = React.useState(false);
+    const dataLst: any[] =
+      typeof datalist[0] === "string"
+        ? datalist
+        : datalist.map((d) => d.username);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    };
 
-  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key } = e;
-    const trimmedInput = inputValue.trim();
+    const handleCheckoxChange = (
+      e: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+      const { checked, value } = e.target;
+      let newCheckedList = [...tags];
 
-    if (
-      key === "Enter" &&
-      trimmedInput.length /* &&
-      !datalist.includes(trimmedInput) */
-    ) {
-      e.preventDefault();
-      // setTags((prevState) => [...prevState, trimmedInput]);
-      setInputValue("");
-    }
+      if (checked) {
+        newCheckedList.push(value);
+        setTags(newCheckedList);
+      } else {
+        setTags(newCheckedList.filter((item) => item !== value));
+      }
+    };
 
-    if (key === "Backspace" && !inputValue.length /* && tags.length */) {
-      e.preventDefault();
-      // const tagsCopy = [...tags];
-      // const poppedTag = tagsCopy.pop();
+    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      const { key } = e;
+      const trimmedInput = inputValue.trim();
 
-      // setTags(tagsCopy);
-      // setInputValue(poppedTag);
-    }
+      if (
+        key === "Enter" &&
+        trimmedInput.length &&
+        !tags.includes(trimmedInput)
+      ) {
+        e.preventDefault();
+        console.log("enter");
+        // setTags((prev) => [
+        //   ...prev,
+        //   { key: Math.random().toString(), value: trimmedInput },
+        // ]);
 
-    setIsKeyReleased(false);
-  };
+        if (dataLst.includes(trimmedInput)) {
+          setTags((prev) => [...prev, trimmedInput]);
+        }
 
-  const handleKeyUp = () => {
-    setIsKeyReleased(true);
-  };
+        setInputValue("");
+      }
 
-  return (
-    <div className="select">
-      <input
-        className="select__input"
+      if (
+        key === "Backspace" &&
+        !inputValue.length &&
+        tags.length &&
+        isKeyReleased
+      ) {
+        let tagsCopy = [...tags];
+        const poppedTag = tagsCopy.pop();
+
+        e.preventDefault();
+        setTags(tagsCopy);
+        // setInputValue(poppedTag); backspace to edit prev tag
+      }
+
+      setIsKeyReleased(false);
+    };
+
+    const handleKeyUp = () => {
+      setIsKeyReleased(true);
+    };
+
+    const search = (data: string[]) => {
+      return data.filter(
+        (item) =>
+          item
+            .toString()
+            .toLowerCase()
+            .indexOf(inputValue.toString().toLowerCase()) > -1
+      );
+    };
+
+    React.useEffect(() => {
+      console.log(tags);
+      setValue(name, tags);
+    }, [tags]);
+
+    return (
+      <div
+        className="select"
         onFocus={() => setShow(true)}
-        onBlur={() => setShow(false)}
-        onChange={handleChange}
-        onKeyDown={handleKeydown}
-        onKeyUp={handleKeyUp}
-      />
-      <div className="select__dropdown">
-        {datalist.map((item) => (
-          <label key={Math.random()}>
-            <input
-              type="checkbox"
-              value={item instanceof Object ? item.id : item}
-              {...register}
-            />
-          </label>
-        ))}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget)) {
+            setShow(false);
+          }
+        }}
+      >
+        <input
+          ref={ref}
+          className="select__input"
+          onChange={handleInputChange}
+          value={inputValue}
+          onKeyDown={handleKeydown}
+          onKeyUp={handleKeyUp}
+          style={{ backgroundColor: "blueviolet" }}
+        />
+        <div
+          className="select__dropdown"
+          style={{ display: isShow ? "inherit" : "none" }}
+        >
+          {dataLst &&
+            search(dataLst).map((item) => (
+              <label key={item + "t"}>
+                <input
+                  type="checkbox"
+                  value={item}
+                  checked={tags.includes(item)}
+                  /* {...register(name)} */
+                  onChange={handleCheckoxChange}
+                />
+                {item}
+              </label>
+            ))}
+        </div>
       </div>
-    </div>
-  );
-};
+      // <input type="text" {...register(name)} />
+    );
+  }
+);
+
+// const Select= React.forwardRef<HTMLInputElement, ISelectProps> (
+//   ({}),ref) => {
+//   const [isShow, setShow] = useToggle(false);
+//   const [inputValue, setInputValue] = React.useState("");
+//   const [tags, setTags] = React.useState<
+//     Array<{
+//       key: string;
+//       value: string;
+//     }>
+//   >([]);
+//   const [isKeyReleased, setIsKeyReleased] = React.useState(false);
+//   const dataLst: any[] =
+//     typeof datalist[0] === "string"
+//       ? datalist
+//       : datalist.map((d) => d.username);
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     setInputValue(e.target.value);
+//   };
+
+//   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+//     const { key } = e;
+//     const trimmedInput = inputValue.trim();
+
+//     if (
+//       key === "Enter" &&
+//       trimmedInput.length &&
+//       !datalist.includes(trimmedInput)
+//     ) {
+//       e.preventDefault();
+//       console.log("enter");
+//       setTags((prev) => [
+//         ...prev,
+//         { key: Math.random().toString(), value: trimmedInput },
+//       ]);
+
+//       setInputValue("");
+//     }
+
+//     if (key === "Backspace" && !inputValue.length && tags.length) {
+//       e.preventDefault();
+//       let tagsCopy = [...tags];
+//       const poppedTag = tagsCopy.pop();
+
+//       setTags(tagsCopy);
+//       // setInputValue(poppedTag); backspace to edit prev tag
+//     }
+
+//     setIsKeyReleased(false);
+//   };
+
+//   const handleKeyUp = () => {
+//     setIsKeyReleased(true);
+//   };
+
+//   const search = (data: string[]) => {
+//     return data.filter(
+//       (item) =>
+//         item
+//           .toString()
+//           .toLowerCase()
+//           .indexOf(inputValue.toString().toLowerCase()) > -1
+//     );
+//   };
+
+//   React.useEffect(() => {
+//     console.log(tags);
+//   }, [tags]);
+
+//   return (
+//     <div
+//       className="select"
+//       onFocus={() => setShow(true)}
+//       onBlur={(e) => {
+//         if (!e.currentTarget.contains(e.relatedTarget)) {
+//           setShow(false);
+//         }
+//       }}
+//     >
+//       <input
+//         className="select__input"
+//         onChange={handleChange}
+//         onKeyDown={handleKeydown}
+//         onKeyUp={handleKeyUp}
+//       />
+//       <div
+//         className="select__dropdown"
+//         style={{ display: isShow ? "inherit" : "none" }}
+//       >
+//         {dataLst &&
+//           search(dataLst).map((item) => (
+//             <label key={Math.random()}>
+//               <input type="checkbox" value={item} ref={ref} />
+//               {item}
+//             </label>
+//           ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 export default Select;

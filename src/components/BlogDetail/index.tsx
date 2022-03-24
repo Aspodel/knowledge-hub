@@ -5,24 +5,31 @@ import Editor from "../Editor";
 import { blogService } from "../../services/blogService";
 import { useForm } from "react-hook-form";
 import { IUser } from "../../interfaces";
+import Select from "../Select";
 
 const BlogDetail = () => {
-  const [value, setValue] = React.useState<any>();
+  // const [value, setValue] = React.useState<any>();
   const { get: getBlog } = blogService();
-  const { register, handleSubmit, watch } = useForm();
-  const onSubmit = (data: any) => {
-    // alert(JSON.stringify(data));
-    console.log(watch("example"));
-  };
+  const { register, handleSubmit, watch, setValue } = useForm();
 
-  useEffect(() => {
-    const get = async () => {
-      const result = await getBlog();
-      setValue(result);
-    };
+  // const onSubmit = (data: any) => {
+  //   // alert(JSON.stringify(data));
+  //   console.log(watch("example"));
+  //   console.log(watch("test"));
+  // };
 
-    get();
-  }, []);
+  const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
+  });
+
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const result = await getBlog();
+  //     setValue(result);
+  //   };
+
+  //   get();
+  // }, []);
 
   // useEffect(() => {
   //   console.log(value);
@@ -38,54 +45,8 @@ const BlogDetail = () => {
       {/* <br />
       <Editor defaultData={Data} setData={setValue} readOnly /> */}
       <div>
-        <details className="custom-select">
-          <summary className="radios">
-            {/* <input
-              type="radio"
-              name="item"
-              id="default"
-              title="Auswählen..."
-              checked
-            /> */}
-            <input type="radio" name="item" id="item1" title="Item 1" />
-            <input type="radio" name="item" id="item2" title="Item 2" />
-            <input type="radio" name="item" id="item3" title="Item 3" />
-            <input type="radio" name="item" id="item4" title="Item 4" />
-            <input type="radio" name="item" id="item5" title="Item 5" />
-          </summary>
-
-          <ul className="list">
-            <li>
-              <label htmlFor="item1">
-                {/* <img
-                  className="fit-picture"
-                  src="https://i.imgur.com/Ob76955.jpeg"
-                  alt="Grapefruit slice atop a pile of other slices"
-                /> */}
-                sss
-              </label>
-            </li>
-            <li>
-              <label htmlFor="item2">Item 2</label>
-            </li>
-            <li>
-              <label htmlFor="item3">Item 3</label>
-            </li>
-            <li>
-              <label htmlFor="item4">Item 4</label>
-            </li>
-            <li>
-              <label htmlFor="item5">Item 5</label>
-            </li>
-          </ul>
-        </details>
-
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <label className="select" htmlFor="slct">
+        {/* <label className="select" htmlFor="slct">
           <select id="slct" required defaultValue="">
             <option value="" disabled>
               Select option
@@ -106,10 +67,10 @@ const BlogDetail = () => {
           <symbol id="select-arrow-down" viewBox="0 0 10 6">
             <polyline points="1 1 5 5 9 1"></polyline>
           </symbol>
-        </svg>
+        </svg> */}
       </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         {["rainbow", "rain", "sun", "night", "cloud"].map((c, i) => (
           <label key={c}>
             <input
@@ -121,6 +82,16 @@ const BlogDetail = () => {
             {c}
           </label>
         ))}
+
+        <button type="submit">Submit</button>
+      </form>
+      <form onSubmit={onSubmit}>
+        <Select
+          datalist={["rainbow", "rain", "sun", "night", "cloud"]}
+          name="test"
+          register={register}
+          setValue={setValue}
+        />
 
         <button type="submit">Submit</button>
       </form>
