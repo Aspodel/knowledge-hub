@@ -71,8 +71,18 @@ const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
         //   { key: Math.random().toString(), value: trimmedInput },
         // ]);
 
+        const filter = dataLst.filter(
+          (item) =>
+            item
+              .toString()
+              .toLowerCase()
+              .indexOf(inputValue.toString().toLowerCase()) > -1
+        );
+
         if (dataLst.includes(trimmedInput)) {
           setTags((prev) => [...prev, trimmedInput]);
+        } else if (filter.length) {
+          setTags((prev) => [...prev, filter[0]]);
         }
 
         setInputValue("");
@@ -145,11 +155,15 @@ const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
         />
         <div
           className="select__dropdown"
+          tabIndex={0}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           style={{ display: isShow ? "block" : "none" }}
         >
           {dataLst &&
             search(dataLst).map((item) => (
-              <div key={item + "cb"}>
+              <div key={item}>
                 <input
                   type="checkbox"
                   value={item}

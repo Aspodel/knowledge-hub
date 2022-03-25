@@ -195,7 +195,21 @@ const NewBlog = () => {
                 </Tooltip>
               </div>
 
-              <input type="text" />
+              <Select
+                datalist={[
+                  "React",
+                  "Asp",
+                  ".Net",
+                  "FE",
+                  "BE",
+                  "UI",
+                  "UX",
+                  "Design",
+                ]}
+                name="test"
+                register={register}
+                setValue={setValue}
+              />
 
               <div className="container__list">
                 <Tag closable>React</Tag>
