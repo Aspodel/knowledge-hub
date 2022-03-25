@@ -70,7 +70,7 @@ const BlogDetail = () => {
         </svg> */}
       </div>
       <br />
-      <form onSubmit={onSubmit}>
+      {/* <form onSubmit={onSubmit}>
         {["rainbow", "rain", "sun", "night", "cloud"].map((c, i) => (
           <label key={c}>
             <input
@@ -84,14 +84,15 @@ const BlogDetail = () => {
         ))}
 
         <button type="submit">Submit</button>
-      </form>
+      </form> */}
       <form onSubmit={onSubmit}>
-        <Select
+        {/* <Select
+          defaultValues={["rain", "sun"]}
           datalist={["rainbow", "rain", "sun", "night", "cloud"]}
           name="test"
-          register={register}
+          // register={register}
           setValue={setValue}
-        />
+        /> */}
 
         <button type="submit">Submit</button>
       </form>

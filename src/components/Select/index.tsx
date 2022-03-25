@@ -9,160 +9,178 @@ import useToggle from "../../hooks/useToggle";
 import { IBlog, IUser } from "../../interfaces";
 import Icon from "../Icon";
 import { X } from "@styled-icons/heroicons-outline";
-import { Color } from "../../utils/enum";
 
 interface ISelectProps {
+  defaultValues?: any[];
   datalist: any[];
   type?: "multiple" | "single";
   maxTags?: number;
-  register: UseFormRegister<any>;
+  hideTag?: boolean;
   name: string;
   setValue: UseFormSetValue<any>;
 }
 
-const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
-  ({ datalist, type = "multiple", maxTags, register, name, setValue }, ref) => {
-    const [isShow, setShow] = useToggle(false);
-    const [inputValue, setInputValue] = React.useState("");
-    // const [tags, setTags] = React.useState<
-    //   Array<{
-    //     key: string;
-    //     value: string;
-    //   }>
-    // >([]);
-    const [tags, setTags] = React.useState<string[]>([]);
-    const [isKeyReleased, setIsKeyReleased] = React.useState(false);
-    const dataLst: any[] =
-      typeof datalist[0] === "string"
-        ? datalist
-        : datalist.map((d) => d.username);
+const Select = ({
+  defaultValues = [],
+  datalist,
+  type = "multiple",
+  maxTags,
+  hideTag = false,
+  name,
+  setValue,
+}: ISelectProps) => {
+  const [isShow, setShow] = useToggle(false);
+  const [inputValue, setInputValue] = React.useState("");
+  const [tags, setTags] = React.useState<any[]>(defaultValues);
+  const [isKeyReleased, setIsKeyReleased] = React.useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
-    };
+  const dataLst: any[] =
+    typeof datalist[0] === "string"
+      ? datalist
+      : datalist.map((d) => d.username);
 
-    const handleCheckoxChange = (
-      e: React.ChangeEvent<HTMLInputElement>
-    ): void => {
-      const { checked, value } = e.target;
-      let newCheckedList = [...tags];
+  const filter = dataLst
+    .sort()
+    .filter(
+      (item) =>
+        item
+          .toString()
+          .toLowerCase()
+          .indexOf(inputValue.toString().toLowerCase()) > -1
+    );
 
-      if (checked) {
-        newCheckedList.push(value);
-        setTags(newCheckedList);
-      } else {
-        setTags(newCheckedList.filter((item) => item !== value));
-      }
-    };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
-    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      const { key } = e;
-      const trimmedInput = inputValue.trim();
+  const handleCheckoxChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { checked, value } = e.target;
+    let newCheckedList = [...tags];
 
-      if (
-        key === "Enter" &&
-        trimmedInput.length &&
-        !tags.includes(trimmedInput)
-      ) {
-        e.preventDefault();
-        console.log("enter");
-        // setTags((prev) => [
-        //   ...prev,
-        //   { key: Math.random().toString(), value: trimmedInput },
-        // ]);
+    if (checked) {
+      newCheckedList.push(value);
+      setTags(newCheckedList);
+    } else {
+      setTags(newCheckedList.filter((item) => item !== value));
+    }
+  };
 
-        const filter = dataLst.filter(
-          (item) =>
-            item
-              .toString()
-              .toLowerCase()
-              .indexOf(inputValue.toString().toLowerCase()) > -1
-        );
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    const trimmedInput = inputValue.trim();
 
-        if (dataLst.includes(trimmedInput)) {
-          setTags((prev) => [...prev, trimmedInput]);
-        } else if (filter.length) {
-          setTags((prev) => [...prev, filter[0]]);
-        }
+    if (
+      key === "Enter" &&
+      trimmedInput.length &&
+      !tags.map((t) => t.toLowerCase()).includes(trimmedInput.toLowerCase())
+    ) {
+      e.preventDefault();
 
-        setInputValue("");
-      }
-
-      if (
-        key === "Backspace" &&
-        !inputValue.length &&
-        tags.length &&
-        isKeyReleased
-      ) {
-        let tagsCopy = [...tags];
-        const poppedTag = tagsCopy.pop();
-
-        e.preventDefault();
-        setTags(tagsCopy);
-        // setInputValue(poppedTag); backspace to edit prev tag
-      }
-
-      setIsKeyReleased(false);
-    };
-
-    const handleKeyUp = () => {
-      setIsKeyReleased(true);
-    };
-
-    const search = (data: string[]) => {
-      return data.filter(
-        (item) =>
-          item
-            .toString()
-            .toLowerCase()
-            .indexOf(inputValue.toString().toLowerCase()) > -1
-      );
-    };
-
-    React.useEffect(() => {
-      console.log(tags);
-      setValue(name, tags);
-    }, [tags]);
-
-    const deleteTag = (index: number) => {
-      setTags((prevState) => prevState.filter((tag, i) => i !== index));
-    };
-
-    return (
-      <div
-        className="select"
-        onFocus={() => setShow(true)}
-        onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget)) {
-            setShow(false);
+      if (dataLst.includes(trimmedInput)) {
+        setTags((prev) => [...prev, trimmedInput]);
+      } else if (filter.length) {
+        for (let i = 0; i < filter.length; i++) {
+          if (
+            !tags.map((t) => t.toLowerCase()).includes(filter[i].toLowerCase())
+          ) {
+            setTags((prev) => [...prev, filter[i]]);
+            break;
           }
+        }
+      }
+
+      setInputValue("");
+    } else if (key === "Enter") {
+      setInputValue("");
+    }
+
+    if (
+      key === "Backspace" &&
+      !inputValue.length &&
+      tags.length &&
+      isKeyReleased
+    ) {
+      let tagsCopy = [...tags];
+      const poppedTag = tagsCopy.pop();
+
+      e.preventDefault();
+      setTags(tagsCopy);
+      // setInputValue(poppedTag); backspace to edit prev tag
+    }
+
+    setIsKeyReleased(false);
+  };
+
+  const handleKeyUp = () => {
+    setIsKeyReleased(true);
+  };
+
+  const search = (data: any[]): any[] => {
+    return data.filter(
+      (item) =>
+        (typeof item === "string" ? item : item.username)
+          .toString()
+          .toLowerCase()
+          .indexOf(inputValue.toString().toLowerCase()) > -1
+    );
+  };
+
+  // React.useEffect(() => {
+  //   console.log(tags);
+  //   setValue(name, tags);
+  // }, []);
+
+  const deleteTag = (index: number) => {
+    setTags((prevState) => prevState.filter((tag, i) => i !== index));
+  };
+
+  return (
+    <div
+      className="select"
+      onFocus={() => {
+        setShow(true);
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setShow(false);
+        }
+      }}
+    >
+      {tags.map((tag, index) => (
+        <div className="select__tag" tabIndex={1}>
+          {tag}
+          <button onClick={() => deleteTag(index)}>
+            <Icon icon={X} size={12} />
+          </button>
+        </div>
+      ))}
+      <input
+        className="select__input"
+        onChange={handleInputChange}
+        value={inputValue}
+        onKeyDown={handleKeydown}
+        onKeyUp={handleKeyUp}
+        ref={inputRef}
+      />
+      <div
+        className="select__dropdown"
+        tabIndex={-1}
+        onClick={(e) => {
+          e.stopPropagation();
         }}
+        style={{ display: isShow ? "block" : "none" }}
       >
-        {tags.map((tag, index) => (
-          <div className="select__tag">
-            {tag}
-            <button onClick={() => deleteTag(index)}>
-              <Icon icon={X} size={12} />
-            </button>
-          </div>
-        ))}
-        <input
-          className="select__input"
-          onChange={handleInputChange}
-          value={inputValue}
-          onKeyDown={handleKeydown}
-          onKeyUp={handleKeyUp}
-        />
-        <div
-          className="select__dropdown"
-          tabIndex={0}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          style={{ display: isShow ? "block" : "none" }}
-        >
-          {dataLst &&
-            search(dataLst).map((item) => (
+        {typeof datalist[0] === "string" &&
+          datalist &&
+          search(datalist)
+            .sort()
+            .map((item) => (
               <div key={item}>
                 <input
                   type="checkbox"
@@ -174,112 +192,31 @@ const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
                 <label htmlFor={item}>{item}</label>
               </div>
             ))}
-        </div>
+
+        {typeof datalist[0] === "object" &&
+          datalist &&
+          search(datalist)
+            .sort((a, b) =>
+              a.username > b.username ? 1 : b.username > a.username ? -1 : 0
+            )
+            .map((item, index) => (
+              <div key={item.guid}>
+                <input
+                  type="checkbox"
+                  value={item}
+                  checked={tags.includes(item)}
+                  onChange={handleCheckoxChange}
+                  id={item}
+                />
+                <label htmlFor={item}>
+                  <div>{item.guid}</div>
+                  <div>{item.username}</div>
+                </label>
+              </div>
+            ))}
       </div>
-      // <input type="text" {...register(name)} />
-    );
-  }
-);
-
-// const Select= React.forwardRef<HTMLInputElement, ISelectProps> (
-//   ({}),ref) => {
-//   const [isShow, setShow] = useToggle(false);
-//   const [inputValue, setInputValue] = React.useState("");
-//   const [tags, setTags] = React.useState<
-//     Array<{
-//       key: string;
-//       value: string;
-//     }>
-//   >([]);
-//   const [isKeyReleased, setIsKeyReleased] = React.useState(false);
-//   const dataLst: any[] =
-//     typeof datalist[0] === "string"
-//       ? datalist
-//       : datalist.map((d) => d.username);
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setInputValue(e.target.value);
-//   };
-
-//   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-//     const { key } = e;
-//     const trimmedInput = inputValue.trim();
-
-//     if (
-//       key === "Enter" &&
-//       trimmedInput.length &&
-//       !datalist.includes(trimmedInput)
-//     ) {
-//       e.preventDefault();
-//       console.log("enter");
-//       setTags((prev) => [
-//         ...prev,
-//         { key: Math.random().toString(), value: trimmedInput },
-//       ]);
-
-//       setInputValue("");
-//     }
-
-//     if (key === "Backspace" && !inputValue.length && tags.length) {
-//       e.preventDefault();
-//       let tagsCopy = [...tags];
-//       const poppedTag = tagsCopy.pop();
-
-//       setTags(tagsCopy);
-//       // setInputValue(poppedTag); backspace to edit prev tag
-//     }
-
-//     setIsKeyReleased(false);
-//   };
-
-//   const handleKeyUp = () => {
-//     setIsKeyReleased(true);
-//   };
-
-//   const search = (data: string[]) => {
-//     return data.filter(
-//       (item) =>
-//         item
-//           .toString()
-//           .toLowerCase()
-//           .indexOf(inputValue.toString().toLowerCase()) > -1
-//     );
-//   };
-
-//   React.useEffect(() => {
-//     console.log(tags);
-//   }, [tags]);
-
-//   return (
-//     <div
-//       className="select"
-//       onFocus={() => setShow(true)}
-//       onBlur={(e) => {
-//         if (!e.currentTarget.contains(e.relatedTarget)) {
-//           setShow(false);
-//         }
-//       }}
-//     >
-//       <input
-//         className="select__input"
-//         onChange={handleChange}
-//         onKeyDown={handleKeydown}
-//         onKeyUp={handleKeyUp}
-//       />
-//       <div
-//         className="select__dropdown"
-//         style={{ display: isShow ? "inherit" : "none" }}
-//       >
-//         {dataLst &&
-//           search(dataLst).map((item) => (
-//             <label key={Math.random()}>
-//               <input type="checkbox" value={item} ref={ref} />
-//               {item}
-//             </label>
-//           ))}
-//       </div>
-//     </div>
-//   );
-// };
+    </div>
+  );
+};
 
 export default Select;

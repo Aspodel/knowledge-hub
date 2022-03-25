@@ -10,7 +10,7 @@ import { ExclamationCircle } from "@styled-icons/heroicons-solid";
 import Icon from "../../components/Icon";
 import { Download } from "@styled-icons/heroicons-outline";
 import { useForm } from "react-hook-form";
-import { IBlog } from "../../interfaces";
+import { IBlog, IUser } from "../../interfaces";
 import { convertToSlug } from "../../utils/helpers";
 import { blogService } from "../../services/blogService";
 import { Data } from "../../components/BlogDetail/data";
@@ -18,6 +18,7 @@ import { userService } from "../../services/userService";
 import Select from "../../components/Select";
 
 const NewBlog = () => {
+  const [user, setUser] = React.useState<IUser[]>([]);
   const { get, create: createBlog } = blogService();
   const { get: getUsers } = userService();
 
@@ -25,6 +26,7 @@ const NewBlog = () => {
     watch,
     register,
     setValue,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<IBlog>();
@@ -32,7 +34,8 @@ const NewBlog = () => {
   React.useEffect(() => {
     const getUsersData = async () => {
       const result = await getUsers();
-      console.log(result);
+      // console.log(result);
+      setUser(result);
     };
 
     getUsersData();
@@ -70,7 +73,7 @@ const NewBlog = () => {
             className="page-layout__main__left"
             onSubmit={handleSubmit(testSubmit)}
           >
-            <button type="submit" /* onSubmit={onSubmit} */>Submit</button>
+            <button type="submit">Submit</button>
             <div className="container">
               <HeaderBox>Title & description</HeaderBox>
 
@@ -112,9 +115,11 @@ const NewBlog = () => {
               </datalist> */}
 
               <Select
-                datalist={["rainbow", "rain", "sun", "night", "cloud"]}
+                datalist={user}
+                // defaultValues={["rainbow", "cloud"]}
+                // datalist={["rainbow", "rain", "sun", "night", "cloud"]}
                 name="test"
-                register={register}
+                // register={register}
                 setValue={setValue}
               />
 
@@ -206,8 +211,8 @@ const NewBlog = () => {
                   "UX",
                   "Design",
                 ]}
-                name="test"
-                register={register}
+                name="tags"
+                // register={register}
                 setValue={setValue}
               />
 
@@ -226,6 +231,7 @@ const NewBlog = () => {
                 <span className="expand-symbol" />
               </div>
               <img src={DEFAULT_PROFFILE_IMG_URL} alt="" />
+              <div className="preview__title">{watch("title")}</div>
             </div>
           </div>
         </div>
