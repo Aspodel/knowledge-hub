@@ -111,12 +111,12 @@ const NewBlog = () => {
                 <option>Audi</option>
               </datalist> */}
 
-              {/* <Select
+              <Select
                 datalist={["rainbow", "rain", "sun", "night", "cloud"]}
-                // {...register("example")}
-              /> */}
-
-              <button type="submit">Submit</button>
+                name="test"
+                register={register}
+                setValue={setValue}
+              />
 
               <div className="container__authors">
                 <Tooltip content="Aspodel Tran" position="bottom">

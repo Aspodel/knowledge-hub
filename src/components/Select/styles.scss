@@ -1,0 +1,107 @@
+@use "../../styles/variables" as var;
+
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-color: var.$n2;
+
+  &:focus-within {
+    background-color: var.$n1;
+    border-color: var.$p1;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: none;
+  }
+
+  &__input {
+    min-width: 50%;
+    // padding-left: 14px;
+
+    background-color: unset;
+
+    // &:hover {
+    //   border-color: transparent;
+    // }
+
+    &:focus {
+      border-color: transparent !important;
+      background-color: transparent !important;
+    }
+  }
+
+  &__tag {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    margin: 0 0 0 10px;
+    padding: 4px 4px 4px 8px;
+    border-radius: 5px;
+    background-color: #7fc8ff;
+    color: var.$n1;
+    font-weight: 600;
+    white-space: nowrap;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      border: 0;
+      outline: 0;
+      border-radius: 4px;
+      background-color: transparent;
+      color: var.$n1;
+
+      &:hover {
+        background-color: rgba($color: var.$shades1, $alpha: 0.2);
+      }
+
+      svg {
+        color: var.$n1;
+        path {
+          stroke-width: 2px;
+        }
+      }
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    z-index: 9;
+
+    max-height: 230px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 2px var.$n3;
+
+    background-color: var.$n1;
+
+    label {
+      display: block;
+      padding: 10px;
+      border: 2px solid transparent;
+
+      font-weight: 600;
+      color: var.$n4;
+
+      cursor: pointer;
+
+      &:hover {
+        color: var.$n5;
+      }
+    }
+
+    input:checked + label {
+      color: var.$p1;
+    }
+  }
+}

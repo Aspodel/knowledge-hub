@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.scss";
 import {
   UseFormRegister,
   UseFormRegisterReturn,
@@ -6,6 +7,9 @@ import {
 } from "react-hook-form";
 import useToggle from "../../hooks/useToggle";
 import { IBlog, IUser } from "../../interfaces";
+import Icon from "../Icon";
+import { X } from "@styled-icons/heroicons-outline";
+import { Color } from "../../utils/enum";
 
 interface ISelectProps {
   datalist: any[];
@@ -110,6 +114,10 @@ const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
       setValue(name, tags);
     }, [tags]);
 
+    const deleteTag = (index: number) => {
+      setTags((prevState) => prevState.filter((tag, i) => i !== index));
+    };
+
     return (
       <div
         className="select"
@@ -120,31 +128,37 @@ const Select = React.forwardRef<HTMLInputElement, ISelectProps>(
           }
         }}
       >
+        {tags.map((tag, index) => (
+          <div className="select__tag">
+            {tag}
+            <button onClick={() => deleteTag(index)}>
+              <Icon icon={X} size={12} />
+            </button>
+          </div>
+        ))}
         <input
-          ref={ref}
           className="select__input"
           onChange={handleInputChange}
           value={inputValue}
           onKeyDown={handleKeydown}
           onKeyUp={handleKeyUp}
-          style={{ backgroundColor: "blueviolet" }}
         />
         <div
           className="select__dropdown"
-          style={{ display: isShow ? "inherit" : "none" }}
+          style={{ display: isShow ? "block" : "none" }}
         >
           {dataLst &&
             search(dataLst).map((item) => (
-              <label key={item + "t"}>
+              <div key={item + "cb"}>
                 <input
                   type="checkbox"
                   value={item}
                   checked={tags.includes(item)}
-                  /* {...register(name)} */
                   onChange={handleCheckoxChange}
+                  id={item}
                 />
-                {item}
-              </label>
+                <label htmlFor={item}>{item}</label>
+              </div>
             ))}
         </div>
       </div>
