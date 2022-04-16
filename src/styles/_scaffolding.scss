@@ -82,6 +82,20 @@ img {
   color: white;
 }
 
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+// ::-webkit-scrollbar-track {
+//   background: $n1; /* color of the tracking area */
+// }
+
+::-webkit-scrollbar-thumb {
+  background-color: $shades1; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid $n1; /* creates padding around scroll thumb */
+}
+
 .codex-editor {
   .codex-editor__redactor {
     padding-bottom: 50px !important;

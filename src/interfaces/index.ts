@@ -8,7 +8,7 @@ export interface IDTO<T = number> {
 
 export interface IUser extends IDTO<string> {
   guid: string;
-  username?: string;
+  username: string;
   firstName: string;
   lastname: string;
   email: string;

@@ -1,18 +1,17 @@
 import React from "react";
 import "./styles.scss";
-import {
-  UseFormRegister,
-  UseFormRegisterReturn,
-  UseFormSetValue,
-} from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form";
 import useToggle from "../../hooks/useToggle";
-import { IBlog, IUser } from "../../interfaces";
 import Icon from "../Icon";
 import { X } from "@styled-icons/heroicons-outline";
+import { DEFAULT_PROFFILE_IMG_URL } from "../../utils/constants";
+import { IUser } from "../../interfaces";
 
 interface ISelectProps {
-  defaultValues?: any[];
-  datalist: any[];
+  // defaultValues?: any[];
+  // datalist: any[];
+  defaultValues?: string[];
+  datalist: Array<string | IUser>;
   type?: "multiple" | "single";
   maxTags?: number;
   hideTag?: boolean;
@@ -29,18 +28,29 @@ const Select = ({
   name,
   setValue,
 }: ISelectProps) => {
+  // const defaultVl = defaultValues.map((item) => {
+  //   if (typeof item === "string") {
+  //     return item;
+  //   } else {
+  //     return item.username;
+  //   }
+  // });  
+
   const [isShow, setShow] = useToggle(false);
   const [inputValue, setInputValue] = React.useState("");
-  const [tags, setTags] = React.useState<any[]>(defaultValues);
+  const [tags, setTags] = React.useState<string[]>(defaultValues);
   const [isKeyReleased, setIsKeyReleased] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const dataLst: any[] =
-    typeof datalist[0] === "string"
-      ? datalist
-      : datalist.map((d) => d.username);
+  const dataLs: any[] = datalist.map((item) => {
+    if (typeof item === "string") {
+      return item;
+    } else {
+      return item.username;
+    }
+  });
 
-  const filter = dataLst
+  const filter = dataLs
     .sort()
     .filter(
       (item) =>
@@ -57,7 +67,9 @@ const Select = ({
   const handleCheckoxChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
+    console.log("running");
     const { checked, value } = e.target;
+    console.log(value, checked);
     let newCheckedList = [...tags];
 
     if (checked) {
@@ -79,7 +91,7 @@ const Select = ({
     ) {
       e.preventDefault();
 
-      if (dataLst.includes(trimmedInput)) {
+      if (dataLs.includes(trimmedInput)) {
         setTags((prev) => [...prev, trimmedInput]);
       } else if (filter.length) {
         for (let i = 0; i < filter.length; i++) {
@@ -118,7 +130,7 @@ const Select = ({
     setIsKeyReleased(true);
   };
 
-  const search = (data: any[]): any[] => {
+  const search = (data: Array<string | IUser>): any[] => {
     return data.filter(
       (item) =>
         (typeof item === "string" ? item : item.username)
@@ -128,45 +140,90 @@ const Select = ({
     );
   };
 
-  // React.useEffect(() => {
-  //   console.log(tags);
-  //   setValue(name, tags);
-  // }, []);
+  React.useEffect(() => {
+    console.log(tags);
+    setValue(name, tags);
+  }, [tags]);
 
   const deleteTag = (index: number) => {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
+  const handleFocus = () => {
+    setShow(true);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setShow(false);
+    }
+  };
+
+  const renderOptions = () => {
+    const isString = typeof datalist[0] === "string";
+
+    let options = search(datalist)
+      .sort(
+        isString
+          ? undefined
+          : (a, b) =>
+              a.username > b.username ? 1 : b.username > a.username ? -1 : 0
+      )
+      .map(
+        isString
+          ? (item) => (
+              <React.Fragment key={item}>
+                <input
+                  id={item}
+                  type="checkbox"
+                  value={item}
+                  checked={tags.includes(item)}
+                  onChange={handleCheckoxChange}
+                />
+                <label htmlFor={item}>{item}</label>
+              </React.Fragment>
+            )
+          : (item) => (
+              <React.Fragment key={item.username}>
+                <input
+                  id={item.username}
+                  type="checkbox"
+                  value={item.username}
+                  checked={tags.includes(item.username)}
+                  onChange={(e) => handleCheckoxChange(e)}
+                />
+                <label htmlFor={item} className="user-row">
+                  <img src={DEFAULT_PROFFILE_IMG_URL} alt="profile" />
+                  <div>{item.username}</div>
+                </label>
+              </React.Fragment>
+            )
+      );
+
+    return options;
+  };
+
   return (
-    <div
-      className="select"
-      onFocus={() => {
-        setShow(true);
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
-      }}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-          setShow(false);
-        }
-      }}
-    >
-      {tags.map((tag, index) => (
-        <div className="select__tag" tabIndex={1}>
-          {tag}
-          <button onClick={() => deleteTag(index)}>
-            <Icon icon={X} size={12} />
-          </button>
-        </div>
-      ))}
+    <div className="select" onFocus={handleFocus} onBlur={handleBlur}>
+      {!hideTag &&
+        tags.map((tag, index) => (
+          <div className="select__tag" tabIndex={1} key={tag + "-tag"}>
+            {tag}
+            <button onClick={() => deleteTag(index)}>
+              <Icon icon={X} size={12} />
+            </button>
+          </div>
+        ))}
       <input
         className="select__input"
-        onChange={handleInputChange}
         value={inputValue}
+        ref={inputRef}
+        onChange={handleInputChange}
         onKeyDown={handleKeydown}
         onKeyUp={handleKeyUp}
-        ref={inputRef}
       />
       <div
         className="select__dropdown"
@@ -176,7 +233,7 @@ const Select = ({
         }}
         style={{ display: isShow ? "block" : "none" }}
       >
-        {typeof datalist[0] === "string" &&
+        {/* {typeof datalist[0] === "string" &&
           datalist &&
           search(datalist)
             .sort()
@@ -199,21 +256,24 @@ const Select = ({
             .sort((a, b) =>
               a.username > b.username ? 1 : b.username > a.username ? -1 : 0
             )
-            .map((item, index) => (
+            .map((item) => (
               <div key={item.guid}>
                 <input
                   type="checkbox"
-                  value={item}
+                  value={item.guid}
                   checked={tags.includes(item)}
                   onChange={handleCheckoxChange}
-                  id={item}
+                  id={item.guid}
+                  name="select-option"
                 />
-                <label htmlFor={item}>
+                <label htmlFor={item} className="user-row">
+                  <img src={DEFAULT_PROFFILE_IMG_URL} alt="profile" />
                   <div>{item.guid}</div>
                   <div>{item.username}</div>
                 </label>
               </div>
-            ))}
+            ))} */}
+        {renderOptions()}
       </div>
     </div>
   );

@@ -99,10 +99,29 @@
       &:hover {
         color: var.$n5;
       }
+
+      * {
+        cursor: pointer;
+      }
     }
 
     input:checked + label {
       color: var.$p1;
+    }
+
+    .user-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 10px;
+
+      img {
+        height: 34px;
+        width: 34px;
+        border-radius: 7px;
+        object-fit: cover;
+        object-position: center;
+      }
     }
   }
 }

@@ -40,7 +40,7 @@ function Headerbar() {
       </div>
 
       <div className="control">
-        <Link to="/">
+        <Link to="/new-blog">
           <Button>Create</Button>
         </Link>
         {/* <Link to="/">
